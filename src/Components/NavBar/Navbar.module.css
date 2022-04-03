@@ -1,0 +1,85 @@
+.navContainer {
+  height: 100px;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 130px;
+  width: 150px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+.arrowDown {
+  padding-top: 5px;
+}
+
+.logoDiv {
+  padding-left: 2rem;
+  width: 30%;
+}
+
+.linksDiv {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.linksLeft {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-evenly;
+}
+
+.linksRight {
+  display: flex;
+  width: 40%;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.active {
+  color: cadetblue;
+}
+
+.inactive {
+  text-decoration: none;
+}
+
+.cart {
+  cursor: pointer;
+}
+
+.mobileDiv {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .navContainer {
+    display: none;
+  }
+
+  .mobileDiv {
+    display: flex;
+    /* width: 100vw; */
+    height: 80px;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+}

@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Aeonik";
+  src: url("../src/Assets/fonts/Aeonik-Black.otf"); /* IE9 Compat Modes */
+  src: url("../src/Assets/fonts/Aeonik-Black.otf") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../src/Assets/fonts/Aeonik-Black.otf") format("woff2"),
+    /* Super Modern Browsers */ url("../src/Assets/fonts/Aeonik-Black.otf")
+      format("woff"),
+    /* Pretty Modern Browsers */ url("../src/Assets/fonts/Aeonik-Black.otf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("../src/Assets/fonts/Aeonik-Black.otf")
+      format("svg"); /* Legacy iOS */
+}
+
+.App {
+  text-align: center;
+  font-family: "Aeonik", sans-serif;
+}
