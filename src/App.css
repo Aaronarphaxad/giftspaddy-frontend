@@ -11,6 +11,19 @@
       format("svg"); /* Legacy iOS */
 }
 
+@font-face {
+  font-family: "Aeonik-light";
+  src: url("../src/Assets/fonts/Aeonik-Light.otf"); /* IE9 Compat Modes */
+  src: url("../src/Assets/fonts/Aeonik-Black.otf") format("embedded-opentype"),
+    /* IE6-IE8 */ url("../src/Assets/fonts/Aeonik-Black.otf") format("woff2"),
+    /* Super Modern Browsers */ url("../src/Assets/fonts/Aeonik-Black.otf")
+      format("otf"),
+    /* Pretty Modern Browsers */ url("../src/Assets/fonts/Aeonik-Black.otf")
+      format("otf"),
+    /* Safari, Android, iOS */ url("../src/Assets/fonts/Aeonik-Black.otf")
+      format("otf"); /* Legacy iOS */
+}
+
 .App {
   text-align: center;
   font-family: "Aeonik", sans-serif;
