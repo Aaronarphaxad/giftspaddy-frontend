@@ -4,7 +4,7 @@ import "../../Assets/styles/menu.css";
 import Logo from "../../Assets/images/Giftspaddy-logo.svg";
 import ArrowDown from "../../Assets/images/arrow-down.svg";
 import Cart from "../../Assets/images/clarity_shopping-cart-solid.svg";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CustomButton from "../Button/Button";
 import MobileMenu from "../../Assets/icons/mobileMenu";
 import MenuClose from "../../Assets/icons/MenuClose";
@@ -54,7 +54,13 @@ const MenuContent = ({ isOpen, handleClick }) => {
                 : { color: "#000", textDecoration: "none" }
             }
           >
-            <p>About</p>
+            <p
+              className="links"
+              onClick={handleClick}
+              style={{ opacity: isOpen ? "1" : "0" }}
+            >
+              About
+            </p>
           </NavLink>
           <NavLink
             to="/services"
@@ -68,7 +74,13 @@ const MenuContent = ({ isOpen, handleClick }) => {
                 : { color: "#000", textDecoration: "none" }
             }
           >
-            <p>Services</p>
+            <p
+              className="links"
+              onClick={handleClick}
+              style={{ opacity: isOpen ? "1" : "0" }}
+            >
+              Services
+            </p>
           </NavLink>
           <NavLink
             to="/categories"
@@ -82,12 +94,30 @@ const MenuContent = ({ isOpen, handleClick }) => {
                 : { color: "#000", textDecoration: "none" }
             }
           >
-            <p>Categories</p>
+            <p
+              className="links"
+              onClick={handleClick}
+              style={{ opacity: isOpen ? "1" : "0" }}
+            >
+              Categories
+            </p>
           </NavLink>
-          <img src={Cart} alt="Cart" className={styles.cart} />
-          <CustomButton bgColor="black" color="white" width="133px">
-            Login
-          </CustomButton>
+          <img
+            style={{ opacity: isOpen ? "1" : "0" }}
+            src={Cart}
+            alt="Cart"
+            className={styles.cart}
+          />
+          <div style={{ opacity: isOpen ? "1" : "0" }}>
+            <CustomButton
+              style={{ opacity: isOpen ? "1" : "0" }}
+              bgColor="black"
+              color="white"
+              width="133px"
+            >
+              Login
+            </CustomButton>
+          </div>
         </div>
       </div>
     </div>
@@ -100,7 +130,9 @@ const NavBar = () => {
       <MobileNavBar />
       <div className={styles.navContainer}>
         <div className={styles.logoDiv}>
-          <img src={Logo} alt="Giftspaddy Logo" className={styles.logo} />
+          <Link to="/">
+            <img src={Logo} alt="Giftspaddy Logo" className={styles.logo} />
+          </Link>
         </div>
         <div className={styles.linksDiv}>
           <div className={styles.linksLeft}>

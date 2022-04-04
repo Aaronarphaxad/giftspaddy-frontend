@@ -14,9 +14,17 @@ const Footer = () => {
           <img src={LogoWhite} alt="logo" />
         </div>
         <div className={styles.socialsDiv}>
-          <img src={twitter} alt="social" />
+          <img
+            onClick={() => window.open("https://twitter.com/GiftsPaddy")}
+            src={twitter}
+            alt="social"
+          />
           <img src={facebook} alt="social" />
-          <img src={instagram} alt="social" />
+          <img
+            onClick={() => window.open("https://instagram.com/giftspaddy")}
+            src={instagram}
+            alt="social"
+          />
           <img src={linkedin} alt="social" />
         </div>
         <div> © {year.getFullYear()}, Gifts Paddy</div>
