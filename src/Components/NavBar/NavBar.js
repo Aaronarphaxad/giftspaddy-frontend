@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import "../../Assets/styles/menu.css";
-import Logo from "../../Assets/images/Giftspaddy-logo.svg";
+import LogoImg from "../../Assets/images/Giftspaddy-logo.svg";
 import ArrowDown from "../../Assets/images/arrow-down.svg";
 import Cart from "../../Assets/images/clarity_shopping-cart-solid.svg";
 import { Link, NavLink } from "react-router-dom";
@@ -25,7 +25,9 @@ const MobileNavBar = () => {
     <div className={styles.mobileDiv}>
       <MenuContent isOpen={isOpen} handleClick={handleClick} />
       <div>
-        <img src={Logo} alt="logo" />
+        <Link to="/">
+          <img src={LogoImg} alt="logo" />
+        </Link>
       </div>
       <div onClick={handleClick}>
         <MobileMenu />
@@ -126,12 +128,18 @@ const MenuContent = ({ isOpen, handleClick }) => {
 
 const NavBar = () => {
   return (
-    <div style={{ width: "100vw" }}>
+    <>
       <MobileNavBar />
       <div className={styles.navContainer}>
         <div className={styles.logoDiv}>
           <Link to="/">
-            <img src={Logo} alt="Giftspaddy Logo" className={styles.logo} />
+            <img
+              src={LogoImg}
+              alt="Giftspaddy Logo"
+              className={styles.logo}
+              height="90px"
+              width="100px"
+            />
           </Link>
         </div>
         <div className={styles.linksDiv}>
@@ -195,13 +203,18 @@ const NavBar = () => {
           </div>
           <div className={styles.linksRight}>
             <img src={Cart} alt="Cart" className={styles.cart} />
-            <CustomButton bgColor="black" color="white" width="133px">
+            <CustomButton
+              bgColor="black"
+              color="white"
+              width="100px"
+              height="40px"
+            >
               Login
             </CustomButton>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

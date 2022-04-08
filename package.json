@@ -12,9 +12,13 @@
     "react-bootstrap": "^2.2.2",
     "react-datetime-picker": "^3.5.0",
     "react-dom": "^18.0.0",
+    "react-elastic-carousel": "^0.11.5",
+    "react-hot-toast": "^2.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-slick": "^0.28.1",
     "react-spring": "^9.4.4",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,0 +1,52 @@
+.featureContainer {
+  height: 310px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.featureImg {
+  background-color: #f4f4f4;
+  border-radius: 20px;
+  height: 50%;
+  width: 100%;
+}
+
+.featureDetails p:nth-child(1) {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 0;
+}
+
+.featureDetails p:nth-child(2) {
+  margin-bottom: 0;
+  font-weight: 600;
+  text-align: left;
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 39px;
+  color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .featureContainer {
+    width: 95%;
+    height: 350px;
+    padding: 1rem 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .featureDetails p {
+    text-align: center;
+  }
+}
