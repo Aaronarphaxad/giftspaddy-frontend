@@ -1,6 +1,8 @@
 .mainContainer {
   padding: 0 4%;
   display: flex;
+  height: 90vh;
+  margin-top: 8rem;
   /* align-items: center; */
 }
 
@@ -21,8 +23,8 @@
   font-family: "Aeonik";
   font-style: normal;
   font-weight: 700;
-  font-size: 94px;
-  line-height: 113px;
+  font-size: 90px;
+  line-height: 93px;
   color: #000000;
   margin-bottom: 0;
   width: 90%;
@@ -42,16 +44,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 630px;
+  height: 530px;
   text-align: center;
   background-color: #fafafa;
   padding: 2rem 1rem;
 }
 
-.sendHeader h1 {
-  font-family: "Aeonik";
+.sendHeader h2 {
+  font-family: "Aeonik-light";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 36px;
   line-height: 43px;
 }
@@ -105,6 +107,8 @@
   outline: 0.5px solid #f4f4f4;
   border-radius: 5px;
   padding: 5px 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .sendSelectRow select {
   width: 100%;
@@ -113,6 +117,8 @@
   outline: 0.5px solid #f4f4f4;
   border-radius: 5px;
   padding: 5px 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .sendSelectCol div {
@@ -138,7 +144,9 @@
 @media screen and (max-width: 700px) {
   .mainContainer {
     flex-direction: column;
+    gap: 2rem;
     padding: 0;
+    padding-top: 0rem;
   }
   .left {
     width: 100vw;
@@ -170,7 +178,7 @@
   }
 
   .right img {
-    width: 90%;
+    width: 100%;
   }
 
   .sendContainer {
@@ -183,5 +191,17 @@
   }
   .sendSelectCol {
     width: 100vw;
+  }
+
+  .sendSelectCol div {
+    width: 90%;
+  }
+
+  .sendSelectCol div span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 100px;
+    line-height: 186px;
+    color: #000000;
   }
 }

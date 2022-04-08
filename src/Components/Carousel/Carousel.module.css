@@ -1,0 +1,42 @@
+.copierCarouselDiv {
+  position: relative;
+  height: 100%;
+}
+
+.carouselDiv {
+  margin-top: 2rem;
+  height: 100%;
+  width: 100%;
+  justify-self: flex-end;
+}
+
+.copierCarouselDiv span h3 {
+  font-size: 1.3rem;
+}
+
+.copierCarouselDiv span p {
+  color: #545454;
+  font-size: 0.9rem;
+}
+
+.copierBtnsDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.copierBtns {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+/* Rotate image */
+.copierBtnsImg {
+  transform: rotate(180deg);
+}
+
+@media screen and (max-width: 768px) {
+  .copierBtnsDiv {
+    width: 100%;
+  }
+}

@@ -1,9 +1,13 @@
 import styles from "./Home.module.css";
-import HomeIllustration from "../../Assets/images/header-illustration.png";
+import HomeIllustration from "../../Assets/images/Gift-cuate.png";
 import CustomButton from "../../Components/Button/Button";
 import { useState } from "react";
-import Form from "react-bootstrap/Form";
-import DateTimePicker from "react-datetime-picker";
+import toast, { Toaster } from "react-hot-toast";
+import VideoSection from "../../Components/VideoSection/VideoSection";
+import FAQSection from "../../Components/FAQSection/FAQSection";
+import ImageSection from "../../Components/ImageSection/ImageSection";
+import CategorySection from "../../Components/CategorySection/CategorySection";
+import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts";
 
 // TOP SECTION
 const TopSection = () => {
@@ -13,14 +17,14 @@ const TopSection = () => {
       <div className={styles.left}>
         <h1>Gifting is the New Normal </h1>
         <p>
-          We deliver worldwide wherever your loved ones are we can get to them
-          with your gifts from our store.
+          Order gifts for your loved one, and get them shipped instantly with
+          love.
         </p>
         <div>
           <CustomButton
             color="white"
             bgColor="black"
-            width={mobile ? "70%" : "417px"}
+            width={mobile ? "70%" : "350px"}
             height={mobile ? "50px" : "74px"}
             fontSize={mobile ? "18px" : "24px"}
           >
@@ -29,7 +33,10 @@ const TopSection = () => {
         </div>
       </div>
       <div className={styles.right}>
-        <img src={HomeIllustration} alt="Home" />
+        <img src={HomeIllustration} alt="Home" width={"100%"} />
+        <a style={{ visibility: "hidden" }} href="https://storyset.com/people">
+          People illustrations by Storyset
+        </a>
       </div>
     </div>
   );
@@ -38,20 +45,31 @@ const TopSection = () => {
 // SECOND SECTION
 const SecondSection = () => {
   const mobile = window.innerWidth < 768;
-  const [value, onChange] = useState(new Date());
+  const notifyError = () =>
+    toast.error("Please fill all the fields", {
+      position: "top-center",
+      duration: 3000,
+    });
+  const notifySuccess = () =>
+    toast.success("success", {
+      position: "top-center",
+      duration: 3000,
+    });
 
   const handleSubmit = (e) => {
     const city = document.getElementById("send-city").value;
     const category = document.getElementById("send-category").value;
     const date = document.getElementById("send-date").value;
     if (!city || !category || !date) {
-      alert("Please fill all the fields");
+      notifyError();
       return;
     }
+    notifySuccess();
     console.log(city, category, date);
   };
   return (
     <>
+      <Toaster />
       <div className={styles.sendContainer}>
         <div className={styles.sendHeader}>
           <h2>SEND GIFTS TO NIGERIA INSTANTLY</h2>
@@ -64,6 +82,7 @@ const SecondSection = () => {
               <div className={styles.sendSelectRow}>
                 <h3>Choose Destination</h3>
                 <select name="Select City" id="send-city">
+                  <option value=""></option>
                   <option value="lagos">Lagos</option>
                   <option value="abuja">Abuja</option>
                   <option value="PH">Port Harcourt</option>
@@ -77,6 +96,7 @@ const SecondSection = () => {
               <div className={styles.sendSelectRow}>
                 <h3>Celebration</h3>
                 <select id="send-category">
+                  <option value=""></option>
                   <option value="romance">Romance</option>
                   <option value="omugwo">Omugwo</option>
                   <option value="wedding">Wedding</option>
@@ -116,6 +136,11 @@ const HomePage = () => {
     <>
       <TopSection />
       <SecondSection />
+      <VideoSection />
+      <ImageSection />
+      <FeaturedProducts />
+      <CategorySection />
+      <FAQSection />
     </>
   );
 };

@@ -1,0 +1,24 @@
+.featureContainer {
+  width: 100vw;
+  height: 500px;
+  background-color: #fff;
+  color: black;
+  padding: 2rem 4%;
+}
+
+.featureContainer h2 {
+  font-family: "Aeonik", sans-serif;
+  text-align: center;
+  margin: 2% 0;
+}
+
+.featureDiv {
+  height: 300px;
+  width: 150px;
+}
+
+@media screen and (max-width: 768px) {
+  .featureContainer {
+    padding: 2rem;
+  }
+}

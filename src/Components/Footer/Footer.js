@@ -1,5 +1,5 @@
 import styles from "./Footer.module.css";
-import LogoWhite from "../../Assets/images/logo-white.svg";
+import LogoWhite from "../../Assets/images/logo-white.png";
 import twitter from "../../Assets/images/twitter.svg";
 import facebook from "../../Assets/images/facebook.svg";
 import instagram from "../../Assets/images/instagram.svg";
@@ -11,7 +11,7 @@ const Footer = () => {
     <div className={styles.footerContainer}>
       <div className={styles.footerLeft}>
         <div className={styles.footerLogo}>
-          <img src={LogoWhite} alt="logo" />
+          <img src={LogoWhite} alt="logo" height="70px" />
         </div>
         <div className={styles.socialsDiv}>
           <img
