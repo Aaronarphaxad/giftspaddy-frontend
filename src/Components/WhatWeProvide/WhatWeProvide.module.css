@@ -1,0 +1,67 @@
+.provideContainer {
+  height: 600px;
+  width: 100vw;
+  color: white;
+  background-color: #058196;
+  padding: 3rem 0;
+}
+
+.provideContainer h2 {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 31px;
+  color: #ffffff;
+  text-align: left;
+  padding: 0 4%;
+}
+
+.provideContainer p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 36px;
+  color: #ffffff;
+  text-align: left;
+  padding: 0 4%;
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.ListContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+  height: 50px;
+  font-size: 18px;
+}
+.provideList {
+  padding: 4%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .provideContainer {
+    width: 100vw;
+    height: max-content;
+  }
+  .provideContainer h2 {
+    font-size: 39px;
+  }
+  .provideContainer p {
+    font-size: 16px;
+    width: 100%;
+  }
+  .ListContainer {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .provideList {
+    width: 100vw;
+    padding: 0.5rem;
+  }
+}

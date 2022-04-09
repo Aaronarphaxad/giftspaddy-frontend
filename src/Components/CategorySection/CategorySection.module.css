@@ -1,10 +1,11 @@
 .category {
-  padding: 2rem 0;
+  padding: 3rem 0;
   height: max-content;
+  background-color: #fafafa;
 }
 
 .category h3 {
-  font-size: 30px;
+  font-size: 25px;
   font-family: "Aeonik", sans-serif;
   text-align: center;
 }
