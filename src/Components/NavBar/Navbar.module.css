@@ -13,6 +13,14 @@
   justify-content: space-between;
 }
 
+#transparent {
+  background-color: transparent !important;
+}
+
+#notTransparent {
+  background-color: white !important;
+}
+
 .logo {
   height: 60px !important;
   width: 101px;

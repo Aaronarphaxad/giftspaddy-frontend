@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Navbar.module.css";
 import "../../Assets/styles/menu.css";
 import LogoImg from "../../Assets/images/Giftspaddy-logo.svg";
@@ -30,6 +30,12 @@ const MobileNavBar = () => {
         </Link>
       </div>
       <div onClick={handleClick}>
+        <img
+          style={{ marginRight: "15px" }}
+          src={Cart}
+          alt="Cart"
+          className={styles.cart}
+        />
         <MobileMenu />
       </div>
     </div>
@@ -104,12 +110,12 @@ const MenuContent = ({ isOpen, handleClick }) => {
               Categories
             </p>
           </NavLink>
-          <img
+          {/* <img
             style={{ opacity: isOpen ? "1" : "0" }}
             src={Cart}
             alt="Cart"
             className={styles.cart}
-          />
+          /> */}
           <div style={{ opacity: isOpen ? "1" : "0" }}>
             <CustomButton
               style={{ opacity: isOpen ? "1" : "0" }}

@@ -8,6 +8,8 @@ import FAQSection from "../../Components/FAQSection/FAQSection";
 import ImageSection from "../../Components/ImageSection/ImageSection";
 import CategorySection from "../../Components/CategorySection/CategorySection";
 import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts";
+import ReviewSection from "../../Components/ReviewSection/ReviewSection";
+import SponsorSection from "../../Components/SponsorSection/SponsorSection";
 
 // TOP SECTION
 const TopSection = () => {
@@ -133,15 +135,17 @@ const SecondSection = () => {
 
 const HomePage = () => {
   return (
-    <>
+    <div style={{ width: "100vw" }}>
       <TopSection />
       <SecondSection />
       <VideoSection />
       <ImageSection />
       <FeaturedProducts />
       <CategorySection />
+      <ReviewSection />
+      <SponsorSection />
       <FAQSection />
-    </>
+    </div>
   );
 };
 
