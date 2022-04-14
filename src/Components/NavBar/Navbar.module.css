@@ -13,14 +13,6 @@
   justify-content: space-between;
 }
 
-#transparent {
-  background-color: transparent !important;
-}
-
-#notTransparent {
-  background-color: white !important;
-}
-
 .logo {
   height: 60px !important;
   width: 101px;
@@ -34,8 +26,12 @@
   text-decoration: none !important;
 }
 
+.link img {
+  transition: all 0.7s;
+}
+
 .arrowDown {
-  padding-top: 5px;
+  padding-top: 3px;
 }
 
 .logoDiv {

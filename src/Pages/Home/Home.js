@@ -1,7 +1,6 @@
 import styles from "./Home.module.css";
 import HomeIllustration from "../../Assets/images/Gift-cuate.png";
 import CustomButton from "../../Components/Button/Button";
-import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import VideoSection from "../../Components/VideoSection/VideoSection";
 import FAQSection from "../../Components/FAQSection/FAQSection";
@@ -10,6 +9,7 @@ import CategorySection from "../../Components/CategorySection/CategorySection";
 import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts";
 import ReviewSection from "../../Components/ReviewSection/ReviewSection";
 import SponsorSection from "../../Components/SponsorSection/SponsorSection";
+import { Link } from "react-router-dom";
 
 // TOP SECTION
 const TopSection = () => {
@@ -30,7 +30,7 @@ const TopSection = () => {
             height={mobile ? "50px" : "74px"}
             fontSize={mobile ? "18px" : "24px"}
           >
-            Get Started
+            <Link to="/register">Get Started</Link>
           </CustomButton>
         </div>
       </div>

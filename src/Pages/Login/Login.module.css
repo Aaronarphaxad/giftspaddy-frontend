@@ -1,0 +1,180 @@
+.loginContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.left {
+  width: 50%;
+  height: 100%;
+  background-color: #f5f5f5;
+  background-image: url("../../Assets/images/login-img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.left h1 {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 53px;
+  text-align: center;
+  color: #ffffff;
+  width: 70%;
+  margin-top: 50%;
+}
+
+.right {
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rightInnerDiv {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 10%;
+  text-align: left;
+}
+
+.loginImg {
+  margin-bottom: 2rem;
+}
+
+.rightInnerDiv h1 {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 42px;
+
+  color: #000000;
+}
+
+.rightInnerDiv p {
+  margin-bottom: 0;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.inputDivs {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #c1c1c1;
+}
+
+.inputDivs input {
+  border: none;
+  outline: none;
+  width: 95%;
+  background-color: white;
+}
+
+.inputDivs input:focus {
+  border: none;
+  outline: none;
+  background-color: white;
+}
+
+#recover {
+  color: #058196;
+  text-align: right;
+  width: 100% !important;
+  font-size: 0.8rem !important;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.btnText {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.googleContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 3rem;
+}
+
+.googleDiv {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #c1c1c1;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.lineDiv {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.line {
+  width: 40%;
+}
+
+.createAccount {
+  margin: 1rem 0;
+}
+
+.createAccount span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #058196;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .rightInnerDiv {
+    width: 80%;
+  }
+
+  .rightInnerDiv h1 {
+    font-size: 25px;
+  }
+
+  .createAccount,
+  .createAccount span {
+    font-size: 0.7rem;
+  }
+}

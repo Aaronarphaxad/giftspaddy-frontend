@@ -6,6 +6,9 @@ import HomepageLayout from "./Layouts/HomepageLayout/HomepageLayout";
 import About from "./Pages/About/About";
 import Services from "./Pages/Services/Services";
 import Categories from "./Pages/Categories/Categories";
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
+import ServiceDetail from "./Pages/Services/ServiceDetails/ServiceDetail";
 
 function App() {
   return (
@@ -20,6 +23,12 @@ function App() {
         path="/categories"
         element={<HomepageLayout children={<Categories />} />}
       />
+      <Route
+        path="/services/:service"
+        element={<HomepageLayout children={<ServiceDetail />} />}
+      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }

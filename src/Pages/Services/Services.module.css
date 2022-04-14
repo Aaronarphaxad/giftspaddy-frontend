@@ -1,0 +1,147 @@
+.servicesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 15% 12%;
+  height: max-content;
+}
+
+.serviceComponent {
+  width: 100%;
+  height: 270px;
+  display: flex;
+  cursor: pointer;
+}
+
+.left {
+  position: relative;
+  display: flex;
+  color: #fff;
+  width: 70%;
+  background: linear-gradient(118.82deg, #ffc77e 32.25%, #058196 153.17%);
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.left:hover {
+  background: linear-gradient(353deg, #64c9d8 32.25%, #d91348 153.17%);
+}
+
+.left:hover .leftImage img {
+  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
+}
+
+.leftText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 40%;
+  height: 100%;
+  color: #fff;
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.leftText h3 {
+  font-family: "Aeonik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 48px;
+  color: #ffffff;
+  width: 100%;
+  text-align: left !important;
+  margin: 0;
+}
+
+.leftText div {
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+
+.leftImage {
+  width: 60%;
+}
+
+.right {
+  width: 30%;
+  color: white;
+  padding: 10% 2% 3% 3%;
+}
+
+.right h3 {
+  color: #fff;
+  font-family: "Aeonik", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 38px;
+  color: #ffffff;
+  width: 100%;
+  text-align: left !important;
+  margin: 0.5rem 0;
+}
+
+.right div {
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+
+.learn {
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.learn span {
+  text-decoration: none !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.learn span:hover {
+  text-decoration: underline !important;
+}
+
+/* media query mobile */
+@media screen and (max-width: 768px) {
+  .servicesContainer {
+    padding: 15% 5%;
+    margin-top: 4rem;
+    height: max-content;
+  }
+
+  .serviceComponent {
+    height: 150px;
+    width: 100%;
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .leftText {
+    width: 50%;
+  }
+
+  .leftText h3 {
+    width: 100%;
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .leftImage {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .right {
+    display: none;
+  }
+}
