@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Navbar.module.css";
 import "../../Assets/styles/menu.css";
 import LogoImg from "../../Assets/images/Giftspaddy-logo.svg";
@@ -8,6 +8,8 @@ import { Link, NavLink } from "react-router-dom";
 import CustomButton from "../Button/Button";
 import MobileMenu from "../../Assets/icons/mobileMenu";
 import MenuClose from "../../Assets/icons/MenuClose";
+import ServicesDropdown from "../ServicesDropdown/ServicesDropdown";
+import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
 
 // Mobile Menu
 
@@ -123,7 +125,7 @@ const MenuContent = ({ isOpen, handleClick }) => {
               color="white"
               width="133px"
             >
-              Login
+              <Link to="/login">Login</Link>
             </CustomButton>
           </div>
         </div>
@@ -133,10 +135,52 @@ const MenuContent = ({ isOpen, handleClick }) => {
 };
 
 const NavBar = () => {
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const ref = useRef();
+
+  const handleServicesDropdown = (e) => {
+    setServicesDropdownOpen(!servicesDropdownOpen);
+    setCategoryDropdownOpen(false);
+  };
+
+  const handleCategoryDropdown = (e) => {
+    setServicesDropdownOpen(false);
+    setCategoryDropdownOpen(!categoryDropdownOpen);
+  };
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (
+        servicesDropdownOpen &&
+        ref.current &&
+        !ref.current.contains(e.target)
+      ) {
+        setServicesDropdownOpen(false);
+      }
+      if (
+        categoryDropdownOpen &&
+        ref.current &&
+        !ref.current.contains(e.target)
+      ) {
+        setCategoryDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [servicesDropdownOpen, categoryDropdownOpen]);
+
   return (
     <>
       <MobileNavBar />
-      <div className={styles.navContainer}>
+      <div ref={ref} className={styles.navContainer}>
         <div className={styles.logoDiv}>
           <Link to="/">
             <img
@@ -176,15 +220,28 @@ const NavBar = () => {
                   : { color: "#000", textDecoration: "none" }
               }
             >
-              <div className={styles.links}>
+              <div
+                onMouseOver={handleServicesDropdown}
+                className={styles.links}
+              >
                 <span>Services</span>
                 <img
+                  style={{
+                    transform: servicesDropdownOpen ? "rotate(180deg)" : "",
+                    transition: "all 0.5s ease",
+                  }}
                   src={ArrowDown}
                   alt="Arrow Down"
                   className={styles.arrowDown}
                 />
               </div>
             </NavLink>
+            {servicesDropdownOpen && (
+              <ServicesDropdown
+                servicesDropdownOpen={servicesDropdownOpen}
+                setServicesDropdownOpen={setServicesDropdownOpen}
+              />
+            )}
             <NavLink
               to="/categories"
               style={({ isActive }) =>
@@ -197,26 +254,38 @@ const NavBar = () => {
                   : { color: "#000", textDecoration: "none" }
               }
             >
-              <div className={styles.links}>
+              <div
+                onMouseOver={handleCategoryDropdown}
+                className={styles.links}
+              >
                 <span>Categories</span>
                 <img
+                  style={{
+                    transform: categoryDropdownOpen ? "rotate(180deg)" : "",
+                    transition: "all 0.5s ease",
+                  }}
                   src={ArrowDown}
                   alt="Arrow Down"
                   className={styles.arrowDown}
                 />
               </div>
             </NavLink>
+            {categoryDropdownOpen && (
+              <CategoryDropdown categoryDropdownOpen={categoryDropdownOpen} />
+            )}
           </div>
           <div className={styles.linksRight}>
             <img src={Cart} alt="Cart" className={styles.cart} />
-            <CustomButton
-              bgColor="black"
-              color="white"
-              width="100px"
-              height="40px"
-            >
-              Login
-            </CustomButton>
+            <Link to="/login">
+              <CustomButton
+                bgColor="black"
+                color="white"
+                width="100px"
+                height="40px"
+              >
+                Login
+              </CustomButton>
+            </Link>
           </div>
         </div>
       </div>

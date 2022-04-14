@@ -41,9 +41,9 @@ const ProvideData = [
 ];
 
 // List Component
-const ListComponent = ({ text }) => {
+const ListComponent = ({ text, id }) => {
   return (
-    <div className={styles.ListContainer}>
+    <div key={id} className={styles.ListContainer}>
       <div>
         <img src={verified} alt="verified" height="20px" width="20px" />
       </div>
@@ -63,7 +63,7 @@ const WhatWeProvide = () => {
       </div>
       <div className={styles.provideList}>
         {ProvideData.map((data) => {
-          return <ListComponent text={data.text} />;
+          return <ListComponent id={data.id} text={data.text} />;
         })}
       </div>
     </div>

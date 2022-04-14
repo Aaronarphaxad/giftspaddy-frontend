@@ -1,9 +1,10 @@
 .btn {
   background-color: #000;
   color: white;
-  border: 1px solid #f5f5f5;
+  /* border: 1px solid #fff !important; */
   border-radius: 8px !important;
-  border-color: unset !important;
+  outline: none;
+  border-color: #fff !important;
   padding: 0.5rem 1rem;
   font-size: 15px;
   cursor: pointer;
