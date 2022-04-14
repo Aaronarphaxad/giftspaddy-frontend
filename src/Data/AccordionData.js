@@ -5,13 +5,9 @@ export const AccordionData = [
     body: (
       <>
         <p>
-          Cryptocurrency is a network of computers that authenticates
-          transactions using cryptography. Unlike fiat currencies, the world's
-          central banks have no role in establishing and maintaining
-          cryptocurrency's validity. Instead, all crypto transactions are
-          recorded on public ledgers. As a result, blockchain-verified
-          transactions are immutable and leave no chance for hackers to create
-          fake transaction records.{" "}
+          Gifts Paddy is a company with a vision to unite people through the
+          culture of giving. Gifts Paddy makes it easy for you to send gifts to
+          your friends and family in Nigeria.{" "}
         </p>
       </>
     ),
@@ -22,13 +18,9 @@ export const AccordionData = [
     body: (
       <>
         <p>
-          Cryptocurrency is a network of computers that authenticates
-          transactions using cryptography. Unlike fiat currencies, the world's
-          central banks have no role in establishing and maintaining
-          cryptocurrency's validity. Instead, all crypto transactions are
-          recorded on public ledgers. As a result, blockchain-verified
-          transactions are immutable and leave no chance for hackers to create
-          fake transaction records.{" "}
+          Gifts Paddy is a company with a vision to unite people through the
+          culture of giving. Gifts Paddy makes it easy for you to send gifts to
+          your friends and family in Nigeria.{" "}
         </p>
       </>
     ),
@@ -39,13 +31,9 @@ export const AccordionData = [
     body: (
       <>
         <p>
-          Cryptocurrency is a network of computers that authenticates
-          transactions using cryptography. Unlike fiat currencies, the world's
-          central banks have no role in establishing and maintaining
-          cryptocurrency's validity. Instead, all crypto transactions are
-          recorded on public ledgers. As a result, blockchain-verified
-          transactions are immutable and leave no chance for hackers to create
-          fake transaction records.{" "}
+          Gifts Paddy is a company with a vision to unite people through the
+          culture of giving. Gifts Paddy makes it easy for you to send gifts to
+          your friends and family in Nigeria.{" "}
         </p>
       </>
     ),
@@ -56,13 +44,9 @@ export const AccordionData = [
     body: (
       <>
         <p>
-          Cryptocurrency is a network of computers that authenticates
-          transactions using cryptography. Unlike fiat currencies, the world's
-          central banks have no role in establishing and maintaining
-          cryptocurrency's validity. Instead, all crypto transactions are
-          recorded on public ledgers. As a result, blockchain-verified
-          transactions are immutable and leave no chance for hackers to create
-          fake transaction records.{" "}
+          Gifts Paddy is a company with a vision to unite people through the
+          culture of giving. Gifts Paddy makes it easy for you to send gifts to
+          your friends and family in Nigeria.{" "}
         </p>
       </>
     ),
@@ -73,13 +57,9 @@ export const AccordionData = [
     body: (
       <>
         <p>
-          Cryptocurrency is a network of computers that authenticates
-          transactions using cryptography. Unlike fiat currencies, the world's
-          central banks have no role in establishing and maintaining
-          cryptocurrency's validity. Instead, all crypto transactions are
-          recorded on public ledgers. As a result, blockchain-verified
-          transactions are immutable and leave no chance for hackers to create
-          fake transaction records.{" "}
+          Gifts Paddy is a company with a vision to unite people through the
+          culture of giving. Gifts Paddy makes it easy for you to send gifts to
+          your friends and family in Nigeria.{" "}
         </p>
       </>
     ),
