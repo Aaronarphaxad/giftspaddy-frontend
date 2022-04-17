@@ -1,0 +1,30 @@
+.categoryContainer {
+  height: max-content;
+  margin-top: 9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin: auto;
+  text-transform: uppercase;
+}
+
+.categoryTypes {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 2rem;
+  margin: 2rem 0;
+  padding: 0rem 3%;
+}

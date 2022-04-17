@@ -9,6 +9,7 @@ import Categories from "./Pages/Categories/Categories";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import ServiceDetail from "./Pages/Services/ServiceDetails/ServiceDetail";
+import CategoryType from "./Pages/Categories/CategoryType/CategoryType";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
       <Route
         path="/services/:service"
         element={<HomepageLayout children={<ServiceDetail />} />}
+      />
+      <Route
+        path="/category/:category"
+        element={<HomepageLayout children={<CategoryType />} />}
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

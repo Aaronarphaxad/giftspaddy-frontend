@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./CategoryComponent.module.css";
+import { useNavigate } from "react-router-dom";
 
-const CategoryComponent = ({ url, gif, category, link }) => {
+const CategoryComponent = ({ url, gif, category }) => {
+  const navigate = useNavigate();
   return (
     <>
-      <div className={styles.categoryContainer}>
-        {url && (
-          <iframe
-            title="category"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            src={url}
-          ></iframe>
-        )}
+      <div
+        onClick={() => navigate(`/category/${url}`)}
+        className={styles.categoryContainer}
+      >
         {gif && <img src={gif} alt="gif" />}
         <p>{category}</p>
       </div>

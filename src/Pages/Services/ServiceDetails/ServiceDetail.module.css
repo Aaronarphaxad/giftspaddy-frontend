@@ -21,6 +21,8 @@
   border-radius: 41px;
   margin-top: -6rem;
   padding: 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .serviceCard h1 {
@@ -32,6 +34,13 @@
   display: flex;
   align-items: center;
   color: #941318;
+}
+
+.serviceBtnDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center !important;
+  margin-top: 2rem;
 }
 
 /* mobile */

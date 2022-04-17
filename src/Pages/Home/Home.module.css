@@ -186,6 +186,10 @@
     width: 100vw;
   }
 
+  .sendHeader {
+    margin-top: 3rem;
+  }
+
   .sendbtn {
     width: 100%;
   }
