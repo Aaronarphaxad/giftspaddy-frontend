@@ -1,10 +1,19 @@
 import styles from "./ServicesDropdown.module.css";
 import arrow from "../../Assets/images/arrow-right.svg";
+import { useNavigate } from "react-router-dom";
 
 export const DropdownLink = ({ item, url, usage }) => {
+  const navigate = useNavigate();
+
   const handleClick = () => {
     if (!usage) {
       window.location.pathname = `/services/${url}`;
+    }
+
+    if (url === "others" && usage === "category") {
+      navigate("/categories");
+    } else {
+      navigate(`/category/${url}`);
     }
   };
   return (

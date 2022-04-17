@@ -1,6 +1,6 @@
 .featureContainer {
   height: 310px;
-  width: 220px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,10 +20,19 @@
   width: 100%;
 }
 
+.featureDetails {
+  width: 100%;
+}
+
 .featureDetails p:nth-child(1) {
   font-weight: 600;
   font-size: 17px;
   margin-bottom: 0;
+}
+
+.featureDetails p:nth-child(1):hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .featureDetails p:nth-child(2) {
@@ -46,7 +55,12 @@
     margin: 0.5rem;
   }
 
-  .featureDetails p {
+  .featureDetails {
     text-align: center;
+  }
+
+  .featureDetails p {
+    text-align: center !important;
+    width: 100%;
   }
 }

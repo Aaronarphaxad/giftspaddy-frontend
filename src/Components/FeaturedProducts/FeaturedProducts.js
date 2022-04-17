@@ -1,6 +1,6 @@
 import React from "react";
 import { DotCarouselAutoplay } from "../Carousel/Carousel";
-import FeatureComponent from "./FeatureComponent/FeatureComponent";
+import ProductComponent from "./FeatureComponent/ProductComponent";
 
 import styles from "./FeaturedProducts.module.css";
 
@@ -9,14 +9,13 @@ const FeaturedProducts = () => {
     <div className={styles.featureContainer}>
       <h2>FEATURED PRODUCTS</h2>
       <DotCarouselAutoplay>
-        <FeatureComponent />
-        <FeatureComponent />
-        <FeatureComponent />
-        <FeatureComponent />
-        <FeatureComponent />
-        <FeatureComponent />
-        <FeatureComponent />
-        <FeatureComponent />
+        <ProductComponent />
+        <ProductComponent />
+        <ProductComponent />
+        <ProductComponent />
+        <ProductComponent />
+        <ProductComponent />
+        <ProductComponent />
       </DotCarouselAutoplay>
     </div>
   );
