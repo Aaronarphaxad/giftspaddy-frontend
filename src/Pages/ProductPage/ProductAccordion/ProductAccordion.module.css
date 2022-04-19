@@ -1,0 +1,44 @@
+.accordionContainer {
+  width: 90%;
+}
+
+.inputs {
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 0.5rem;
+  width: 90%;
+  margin-bottom: 0.5rem;
+}
+
+.inputs:focus {
+  outline: none;
+}
+
+.inputLabel {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 768px) {
+  .accordionContainer {
+    width: 100%;
+  }
+
+  .inputs {
+    width: 90%;
+  }
+}

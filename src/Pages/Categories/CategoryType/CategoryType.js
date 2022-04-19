@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import styles from "./CategoryType.module.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import ProductComponent from "../../../Components/FeaturedProducts/FeatureComponent/ProductComponent";
+import ProductComponent from "../../../Components/FeaturedProducts/ProductComponent/ProductComponent";
 import SearchIcon from "../../../Assets/icons/SearchIcon";
 import CustomButton from "../../../Components/Button/Button";
 import { Link as RouterLink } from "react-router-dom";
@@ -15,6 +15,10 @@ const CategoryType = () => {
   const { category } = useParams();
 
   const label = `Search for ${category} gifts`;
+
+  const handleSort = (e) => {
+    setSort(e.target.value);
+  };
   return (
     <div className={styles.typeContainer}>
       <div className={styles.searchDiv}>
@@ -32,7 +36,7 @@ const CategoryType = () => {
         </div>
         <div className={styles.sort}>
           <p>Sort by</p>
-          <select placeholder="Sort by" id="sort-by">
+          <select onChange={handleSort} placeholder="Sort by" id="sort-by">
             <option value="date">Date</option>
             <option value="price">Price</option>
             <option value="popularity">Popularity</option>
@@ -50,23 +54,23 @@ const CategoryType = () => {
         </Breadcrumbs>
       </div>
       <div className={styles.productsDiv}>
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
-        <ProductComponent />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
+        <ProductComponent category={category} />
       </div>
       <div className={styles.productsBottom}>
         <p>Don't see what you like?</p>

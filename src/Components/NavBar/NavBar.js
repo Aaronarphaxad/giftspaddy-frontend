@@ -10,6 +10,14 @@ import MobileMenu from "../../Assets/icons/mobileMenu";
 import MenuClose from "../../Assets/icons/MenuClose";
 import ServicesDropdown from "../ServicesDropdown/ServicesDropdown";
 import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import Popover from "@mui/material/Popover";
+import dashboard from "../../Assets/images/dashboard-5481.svg";
+import settings from "../../Assets/images/settings-5666.svg";
 
 // Mobile Menu
 
@@ -23,6 +31,15 @@ const MobileNavBar = () => {
     setIsOpen(!isOpen);
   };
 
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
+
   return (
     <div className={styles.mobileDiv}>
       <MenuContent isOpen={isOpen} handleClick={handleClick} />
@@ -31,20 +48,36 @@ const MobileNavBar = () => {
           <img src={LogoImg} alt="logo" />
         </Link>
       </div>
-      <div onClick={handleClick}>
-        <img
-          style={{ marginRight: "15px" }}
-          src={Cart}
-          alt="Cart"
-          className={styles.cart}
-        />
-        <MobileMenu />
+      <div className="w-25 d-flex justify-content-between">
+        <div className="mt-1">
+          <IconButton aria-label="cart">
+            <StyledBadge badgeContent={4} color="info">
+              <img src={Cart} alt="cart" className={styles.cart} />
+            </StyledBadge>
+          </IconButton>
+        </div>
+        <div onClick={handleClick} className="d-inline ml-2 pt-2">
+          <MobileMenu />
+        </div>
       </div>
     </div>
   );
 };
 
 const MenuContent = ({ isOpen, handleClick }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
+
+  const handleOpen = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div style={{ width: isOpen ? "100%" : "0" }} className="menu-div">
       <div className="content">
@@ -112,21 +145,83 @@ const MenuContent = ({ isOpen, handleClick }) => {
               Categories
             </p>
           </NavLink>
-          {/* <img
-            style={{ opacity: isOpen ? "1" : "0" }}
-            src={Cart}
-            alt="Cart"
-            className={styles.cart}
-          /> */}
+
           <div style={{ opacity: isOpen ? "1" : "0" }}>
-            <CustomButton
-              style={{ opacity: isOpen ? "1" : "0" }}
-              bgColor="black"
-              color="white"
-              width="133px"
-            >
-              <Link to="/login">Login</Link>
-            </CustomButton>
+            {isLoggedIn ? (
+              <>
+                <Stack Stack direction="row" spacing={2}>
+                  <Avatar alt="Aaron" src="" />
+                  <div
+                    className="d-flex align-items-center"
+                    aria-describedby={id}
+                    onClick={handleOpen}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <span style={{ marginRight: "5px" }}>Aaron</span>
+                    <img src={ArrowDown} alt="arrow" height="6px" />
+                  </div>
+                </Stack>
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                >
+                  <div className={styles.profileMenu}>
+                    <div
+                      className="d-flex align-items-center mb-2"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={dashboard}
+                        alt="dashboard"
+                        height="15px"
+                        style={{ marginRight: "10px" }}
+                      />
+                      <span>Dashboard</span>
+                    </div>
+                    <div
+                      className="d-flex align-items-center"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={settings}
+                        alt="dashboard"
+                        height="18px"
+                        style={{ marginRight: "10px" }}
+                      />
+                      <span>Settings</span>
+                    </div>
+                    <div className="mt-2">
+                      <CustomButton
+                        bgColor="#058196"
+                        height="35px"
+                        width="100%"
+                      >
+                        Log out
+                      </CustomButton>
+                    </div>
+                  </div>
+                </Popover>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <CustomButton
+                    bgColor="black"
+                    color="white"
+                    width="100px"
+                    height="40px"
+                  >
+                    Login
+                  </CustomButton>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -137,7 +232,28 @@ const MenuContent = ({ isOpen, handleClick }) => {
 const NavBar = () => {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const ref = useRef();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
+
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
 
   const handleServicesDropdown = (e) => {
     setServicesDropdownOpen(!servicesDropdownOpen);
@@ -274,18 +390,93 @@ const NavBar = () => {
               <CategoryDropdown categoryDropdownOpen={categoryDropdownOpen} />
             )}
           </div>
+          {/* Login buttons */}
           <div className={styles.linksRight}>
-            <img src={Cart} alt="Cart" className={styles.cart} />
-            <Link to="/login">
-              <CustomButton
-                bgColor="black"
-                color="white"
-                width="100px"
-                height="40px"
-              >
-                Login
-              </CustomButton>
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <Stack Stack direction="row" spacing={2}>
+                  <IconButton aria-label="cart">
+                    <StyledBadge badgeContent={4} color="info">
+                      <img src={Cart} alt="cart" className={styles.cart} />
+                    </StyledBadge>
+                  </IconButton>
+                  <Avatar alt="Aaron" src="" />
+                  <div
+                    className="d-flex align-items-center"
+                    aria-describedby={id}
+                    onClick={handleClick}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <span style={{ marginRight: "5px" }}>Aaron</span>
+                    <img src={ArrowDown} alt="arrow" height="6px" />
+                  </div>
+                </Stack>
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                >
+                  <div className={styles.profileMenu}>
+                    <div
+                      className="d-flex align-items-center mb-2"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={dashboard}
+                        alt="dashboard"
+                        height="15px"
+                        style={{ marginRight: "10px" }}
+                      />
+                      <span>Dashboard</span>
+                    </div>
+                    <div
+                      className="d-flex align-items-center mb-2"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={settings}
+                        alt="dashboard"
+                        height="18px"
+                        style={{ marginRight: "10px" }}
+                      />
+                      <span>Settings</span>
+                    </div>
+                    <p className="mx-2">
+                      <CustomButton
+                        bgColor="#058196"
+                        height="35px"
+                        width="100%"
+                      >
+                        Log out
+                      </CustomButton>
+                    </p>
+                  </div>
+                </Popover>
+              </>
+            ) : (
+              <>
+                <IconButton aria-label="cart">
+                  <StyledBadge badgeContent={4} color="info">
+                    <img src={Cart} alt="cart" className={styles.cart} />
+                  </StyledBadge>
+                </IconButton>
+                <Link to="/login">
+                  <CustomButton
+                    bgColor="black"
+                    color="white"
+                    width="100px"
+                    height="40px"
+                  >
+                    Login
+                  </CustomButton>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

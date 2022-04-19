@@ -1,6 +1,6 @@
 import React from "react";
 import { DotCarouselAutoplay } from "../Carousel/Carousel";
-import ProductComponent from "./FeatureComponent/ProductComponent";
+import ProductComponent from "./ProductComponent/ProductComponent";
 
 import styles from "./FeaturedProducts.module.css";
 

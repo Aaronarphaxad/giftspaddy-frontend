@@ -10,6 +10,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import ServiceDetail from "./Pages/Services/ServiceDetails/ServiceDetail";
 import CategoryType from "./Pages/Categories/CategoryType/CategoryType";
+import ProductPage from "./Pages/ProductPage/ProductPage";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
       <Route
         path="/category/:category"
         element={<HomepageLayout children={<CategoryType />} />}
+      />
+      <Route
+        path="/categories/:category/:id"
+        element={<HomepageLayout children={<ProductPage />} />}
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
