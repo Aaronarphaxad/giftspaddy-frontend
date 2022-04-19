@@ -22,7 +22,11 @@ const Categories = () => {
           ))}
         </div>
       )}
-      {mobile && <CategorySection />}
+      {mobile && (
+        <div className="w-100">
+          <CategorySection />
+        </div>
+      )}
       <FeaturedProducts />
     </div>
   );
