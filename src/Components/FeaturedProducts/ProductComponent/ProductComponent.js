@@ -1,7 +1,7 @@
 import CustomButton from "../../Button/Button";
 import styles from "./ProductComponent.module.css";
 import FeatureImg from "../../../Assets/images/featured-img.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
@@ -11,7 +11,6 @@ const ProductComponent = ({ image, title, price, category }) => {
   const [loading, setLoading] = useState(true);
 
   const mobile = window.innerWidth <= 500;
-  console.log(mobile);
 
   const styling = {
     backgroundImage: `url(${FeatureImg})`,
@@ -20,9 +19,15 @@ const ProductComponent = ({ image, title, price, category }) => {
     backgroundRepeat: "no-repeat",
   };
 
-  const handleClick = (e) => {
-    navigate(`/categories/${category}/1`);
-  };
+  // const handleClick = (e) => {
+  //   if (!category) {
+  //     // navigate(`/categories/gift/1`);
+  //     window.location.pathname = "/categories/gift/1";
+  //     window.location.reload();
+  //   } else {
+  //     navigate(`/categories/${category}/2`);
+  //   }
+  // };
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,7 +49,12 @@ const ProductComponent = ({ image, title, price, category }) => {
         <div className={styles.featureContainer}>
           <div style={styling} className={styles.featureImg}></div>
           <div className={styles.featureDetails}>
-            <p onClick={() => handleClick("Lorem Ipsum")}>Lorem Ipsum</p>
+            <Link
+              style={{ textDecoration: "none", color: "balck" }}
+              to={category ? `/categories/${category}/2` : "/categories/gift/1"}
+            >
+              <p style={{ color: "black" }}>Lorem Ipsum</p>
+            </Link>
             <p>$ 400</p>
           </div>
           <div

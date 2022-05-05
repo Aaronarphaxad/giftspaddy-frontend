@@ -1,5 +1,5 @@
 .productContainer {
-  width: 100%;
+  width: 100vw;
   height: max-content;
   margin-top: 7rem;
   display: flex;
@@ -110,13 +110,26 @@
   margin-bottom: 0.5rem;
 }
 
+.infoRightBottom {
+  width: 60%;
+}
+
 .price {
   font-style: normal;
   font-weight: 700;
-  font-size: 35.7713px;
+  font-size: 28px;
   line-height: 45px;
   color: #058196;
   margin-bottom: 0.5rem;
+}
+
+.priceBefore {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 45px;
+  color: #3a3636;
+  margin-bottom: 0.5rem;
+  text-decoration: line-through;
 }
 
 .detailsDiv {
@@ -225,6 +238,10 @@
   }
   .infoRightTop h1 {
     font-size: 28px;
+  }
+
+  .infoRightBottom {
+    width: 100%;
   }
 
   .detailsDiv {

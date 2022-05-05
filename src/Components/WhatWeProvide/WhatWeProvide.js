@@ -38,6 +38,10 @@ const ProvideData = [
     id: 9,
     text: "Make international deliveries look easy",
   },
+  {
+    id: 10,
+    text: "Customise your gifts",
+  },
 ];
 
 // List Component

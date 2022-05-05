@@ -6,9 +6,11 @@ const CustomButton = ({
   width,
   height,
   onClick,
-  color,
+  color = "white",
   fontSize,
   bgColor = "black",
+  loading,
+  disabled,
 }) => {
   return (
     <Button
@@ -18,10 +20,12 @@ const CustomButton = ({
         height: height ? height : undefined,
         fontSize: fontSize ? fontSize : undefined,
         backgroundColor: bgColor,
-        color: color,
+        color: color ? color : "white",
       }}
       className={styles.btn}
       type="primary"
+      loading={loading}
+      disabled={disabled}
     >
       {children}
     </Button>

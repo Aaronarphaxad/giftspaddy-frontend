@@ -16,5 +16,6 @@
 }
 
 .btn:hover {
-  background-color: #058196 !important;
+  background-color: #3192a3 !important;
+  color: #fff;
 }

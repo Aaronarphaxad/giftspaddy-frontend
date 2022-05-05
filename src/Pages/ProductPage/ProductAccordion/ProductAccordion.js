@@ -2,6 +2,7 @@ import styles from "./ProductAccordion.module.css";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
+import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
@@ -16,9 +17,13 @@ const ProductAccordion = () => {
   const [message, setMessage] = useState("");
   const [date, setDate] = useState("");
   const [instruction, setInstruction] = useState("");
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState("panel1");
   const [ratingValue, setValue] = useState(2);
+  const [checked, setChecked] = useState(true);
 
+  const handleRadioChange = (event) => {
+    setChecked(event.target.checked);
+  };
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -173,6 +178,18 @@ const ProductAccordion = () => {
                 name="instruction"
               />
             </div>
+          </div>
+          <div className="d-flex align-items-center gap-1">
+            <span>Express Delivery:</span>
+            <Checkbox
+              checked={checked}
+              onChange={handleRadioChange}
+              inputProps={{ "aria-label": "controlled" }}
+            />
+            <small>
+              Item will be delivered within 24 hours and includes an extra
+              charge of $20
+            </small>
           </div>
 
           <div className="my-2">

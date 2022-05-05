@@ -10,6 +10,7 @@ import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts
 import ReviewSection from "../../Components/ReviewSection/ReviewSection";
 import SponsorSection from "../../Components/SponsorSection/SponsorSection";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 // TOP SECTION
 const TopSection = () => {
@@ -24,14 +25,32 @@ const TopSection = () => {
         </p>
         <div>
           <CustomButton
-            color="white"
-            bgColor="black"
+            bgColor="#058196"
             width={mobile ? "70%" : "350px"}
             height={mobile ? "50px" : "74px"}
             fontSize={mobile ? "18px" : "24px"}
+            color="white"
           >
-            <Link to="/register">Get Started</Link>
+            <Link to="/register">
+              <span>Get Started</span>
+            </Link>
           </CustomButton>
+          {/* <Button
+            style={{
+              height: mobile ? "50px" : "74px",
+              width: mobile ? "70%" : "350px",
+              fontSize: mobile ? "18px" : "24px",
+              borderRadius: "8px",
+              padding: "0.5rem 1rem",
+            }}
+            variant="contained"
+            size="large"
+            color="primary"
+          >
+            <Link to="/register">
+              <span className="w-100">Get Started</span>
+            </Link>
+          </Button> */}
         </div>
       </div>
       <div className={styles.right}>
