@@ -18,6 +18,7 @@ import IconButton from "@mui/material/IconButton";
 import Popover from "@mui/material/Popover";
 import dashboard from "../../Assets/images/dashboard-5481.svg";
 import settings from "../../Assets/images/settings-5666.svg";
+import { useSelector } from "react-redux";
 
 // Mobile Menu
 
@@ -48,15 +49,19 @@ const MobileNavBar = () => {
           <img src={LogoImg} alt="logo" />
         </Link>
       </div>
-      <div className="w-25 d-flex justify-content-between">
-        <div className="mt-1">
-          <IconButton aria-label="cart">
-            <StyledBadge badgeContent={4} color="info">
-              <img src={Cart} alt="cart" className={styles.cart} />
-            </StyledBadge>
-          </IconButton>
-        </div>
-        <div onClick={handleClick} className="d-inline ml-2 pt-2">
+      <div className="d-flex justify-content-between gap-2">
+        {!isOpen && (
+          <div className="mt-1">
+            <IconButton aria-label="cart">
+              <StyledBadge badgeContent={4} color="info">
+                <Link to="/cart">
+                  <img src={Cart} alt="cart" className={styles.cart} />
+                </Link>
+              </StyledBadge>
+            </IconButton>
+          </div>
+        )}
+        <div onClick={handleClick} className="d-inline ml-2 pt-3">
           <MobileMenu />
         </div>
       </div>
@@ -235,6 +240,7 @@ const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const ref = useRef();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const cartList = useSelector((state) => state.cart.cartList);
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -396,8 +402,10 @@ const NavBar = () => {
               <>
                 <Stack Stack direction="row" spacing={2}>
                   <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={4} color="info">
-                      <img src={Cart} alt="cart" className={styles.cart} />
+                    <StyledBadge badgeContent={cartList.length} color="primary">
+                      <Link to="/cart">
+                        <img src={Cart} alt="cart" className={styles.cart} />
+                      </Link>
                     </StyledBadge>
                   </IconButton>
                   <Avatar alt="Aaron" src="" />
@@ -407,7 +415,9 @@ const NavBar = () => {
                     onClick={handleClick}
                     style={{ cursor: "pointer" }}
                   >
-                    <span style={{ marginRight: "5px" }}>Aaron</span>
+                    <span style={{ marginRight: "5px", fontSize: "1rem" }}>
+                      Aaron
+                    </span>
                     <img src={ArrowDown} alt="arrow" height="6px" />
                   </div>
                 </Stack>
@@ -462,7 +472,9 @@ const NavBar = () => {
               <>
                 <IconButton aria-label="cart">
                   <StyledBadge badgeContent={4} color="info">
-                    <img src={Cart} alt="cart" className={styles.cart} />
+                    <Link to="/cart">
+                      <img src={Cart} alt="cart" className={styles.cart} />
+                    </Link>
                   </StyledBadge>
                 </IconButton>
                 <Link to="/login">

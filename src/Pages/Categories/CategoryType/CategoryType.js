@@ -29,7 +29,7 @@ const CategoryType = () => {
             bgColor="#058196"
             color="white"
             width="100px"
-            height="35px"
+            height="40px"
           >
             Search
           </CustomButton>
@@ -74,9 +74,7 @@ const CategoryType = () => {
       </div>
       <div className={styles.productsBottom}>
         <p>Don't see what you like?</p>
-        <p className={styles.productsBottomLink}>
-          Contact us for customised gifts
-        </p>
+        <p className={styles.productsBottomLink}>Customise your gift</p>
       </div>
     </div>
   );

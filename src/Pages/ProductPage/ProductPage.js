@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./ProductPage.module.css";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Rating from "@mui/material/Rating";
@@ -6,24 +7,46 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import FeatureImg from "../../Assets/images/featured-img.png";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
 import CustomButton from "../../Components/Button/Button";
 import ProductAccordion from "./ProductAccordion/ProductAccordion";
-import {
-  CustomCarousel,
-  CustomCarousel2,
-  NoDotCarousel,
-} from "../../Components/Carousel/Carousel";
 import ProductComponent from "../../Components/FeaturedProducts/ProductComponent/ProductComponent";
 import ConversationIcon from "../../Assets/icons/Conversation";
+import Checkbox from "@mui/material/Checkbox";
+import Favorite from "@mui/icons-material/Favorite";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../Cart/redux/cartSlice";
 
 const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
 
 const ProductPage = () => {
   const { category } = useParams();
   const { id } = useParams();
-  const navigate = useNavigate();
+  const cartList = useSelector((state) => state.cart.cartList);
+  const dispatch = useDispatch();
+  const [favourite, setFavorite] = useState(false);
+
+  console.log(cartList);
+
+  const handleAddToCart = () => {
+    const added = cartList.find((product) => product.id === category + id);
+    dispatch(
+      addToCart({
+        id: category + id,
+        title: "Special Hamper",
+        image: "",
+        description:
+          "This is a special hamper for {category}, made with love from naija! Packed with gourmet products of the highest quality. People love this.",
+        price: 400,
+      })
+    );
+  };
+
+  const handleFavourite = (event) => {
+    setFavorite(event.target.checked);
+  };
+
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   return (
     <div className={styles.productContainer}>
@@ -69,10 +92,20 @@ const ProductPage = () => {
             </p>
           </div>
           <div className={styles.infoRightMiddle}>
-            <p className={styles.price}>$1,200</p>
+            <div className="d-flex align-items-center gap-3">
+              <p className={styles.price}>$1,200</p>
+              <p className={styles.priceBefore}>$1,350</p>
+            </div>
             <div className="d-flex align-items-center w-100">
               <Rating name="read-only" value={4} readOnly />
-              <span className="mx-2">50 Reviews</span>
+              <span className="mx-2 pointer">50 Reviews</span>
+              <Checkbox
+                checked={favourite}
+                onChange={handleFavourite}
+                inputProps={{ "aria-label": "controlled" }}
+                icon={<FavoriteBorder />}
+                checkedIcon={<Favorite />}
+              />
             </div>
           </div>
           <div className={styles.infoRightBottom}>
@@ -81,15 +114,11 @@ const ProductPage = () => {
                 bgColor="#058196"
                 color="white"
                 height="45px"
-                width="130px"
+                width="100%"
+                onClick={handleAddToCart}
               >
-                BUY NOW
+                ADD TO CART
               </CustomButton>
-              <Button variant="outlined">
-                <span style={{ color: "#058196", fontFamily: "sans-serif" }}>
-                  Add to Cart
-                </span>
-              </Button>
             </Stack>
           </div>
         </div>
@@ -121,7 +150,7 @@ const ProductPage = () => {
         <hr />
         <div className={styles.reviewsBody}>
           <ConversationIcon />
-          <p>Customers Reviews will appear here</p>
+          <p>Customer Reviews on this product will appear here</p>
         </div>
       </div>
     </div>

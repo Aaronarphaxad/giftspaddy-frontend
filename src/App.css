@@ -58,6 +58,23 @@ button.rec-dot {
   height: 270px;
 }
 
+/* a {
+  color: inherit !important;
+}
+a:hover {
+  color: inherit !important;
+} */
+.pointer {
+  cursor: pointer;
+}
+
+.loading-div {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 @media screen and (max-width: 768px) {
   .sc-eCYdqJ.eLPooy.rec.rec-carousel {
     width: 100vw;
