@@ -1,0 +1,78 @@
+.dashboardContainer {
+  height: max-content;
+  width: 100%;
+  margin-top: 6.5rem;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  gap: 1rem;
+  padding: 0 4%;
+}
+
+.dashboardMenu {
+  padding: 1rem 0;
+}
+
+.dashboardSpace {
+  padding: 1rem 0;
+}
+
+#logout {
+  font-weight: bold;
+}
+
+.menuCard {
+  height: max-content;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  /* gap: 1rem; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.menuRow {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.menuRow:hover {
+  background-color: #f5f5f5;
+}
+
+.cardDiv {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.cardDiv hr {
+  margin: 0.2rem 0;
+}
+
+.cardTop {
+  padding: 0.5rem 1rem;
+}
+
+.cardTop h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.cardBody {
+  padding: 1rem;
+  height: 400px;
+  width: 100%;
+}
+
+#active {
+  background-color: #f5f5f5;
+  color: #058196;
+  font-weight: 600;
+}

@@ -16,10 +16,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+/* 
 .layout {
   height: 100vh !important;
   width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+} */
+
+.layout {
+  height: max-content;
+  width: 100vw;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }

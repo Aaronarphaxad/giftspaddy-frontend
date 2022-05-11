@@ -5,7 +5,6 @@ import Rating from "@mui/material/Rating";
 import Link from "@mui/material/Link";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import FeatureImg from "../../Assets/images/featured-img.png";
 import Stack from "@mui/material/Stack";
 import CustomButton from "../../Components/Button/Button";
 import ProductAccordion from "./ProductAccordion/ProductAccordion";
@@ -15,7 +14,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Favorite from "@mui/icons-material/Favorite";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../Cart/redux/cartSlice";
+import { addToCart, reduceQuantity } from "../Cart/redux/cartSlice";
 
 const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
 
@@ -25,21 +24,25 @@ const ProductPage = () => {
   const cartList = useSelector((state) => state.cart.cartList);
   const dispatch = useDispatch();
   const [favourite, setFavorite] = useState(false);
-
-  console.log(cartList);
+  const cartObject = cartList.find((product) => product.id === category + id);
+  console.log(cartObject);
 
   const handleAddToCart = () => {
-    const added = cartList.find((product) => product.id === category + id);
     dispatch(
       addToCart({
         id: category + id,
         title: "Special Hamper",
         image: "",
+        quantity: 1,
         description:
           "This is a special hamper for {category}, made with love from naija! Packed with gourmet products of the highest quality. People love this.",
         price: 400,
       })
     );
+  };
+
+  const handleReduceQuantity = () => {
+    dispatch(reduceQuantity(category + id));
   };
 
   const handleFavourite = (event) => {
@@ -72,14 +75,28 @@ const ProductPage = () => {
       <div className={styles.infoDiv}>
         <div className={styles.infoLeft}>
           <div className={styles.infoLeftTop}>
-            <img src={FeatureImg} alt="productimage" />
+            <img
+              src={
+                "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773208/featured-img_siaqbe.png"
+              }
+              alt="productimage"
+            />
           </div>
           <div className={styles.infoLeftBottom}>
-            <div className={styles.addCartBtnDiv}>
-              <button className={styles.addCartBtn}>-</button>
-              <span>03</span>
-              <button className={styles.addCartBtn}>+</button>
-            </div>
+            {cartList.find((product) => product.id === category + id) ? (
+              <div className={styles.addCartBtnDiv}>
+                <button
+                  onClick={handleReduceQuantity}
+                  className={styles.addCartBtn}
+                >
+                  -
+                </button>
+                <span>{cartObject.quantity}</span>
+                <button onClick={handleAddToCart} className={styles.addCartBtn}>
+                  +
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
         <div className={styles.infoRight}>
@@ -98,7 +115,9 @@ const ProductPage = () => {
             </div>
             <div className="d-flex align-items-center w-100">
               <Rating name="read-only" value={4} readOnly />
-              <span className="mx-2 pointer">50 Reviews</span>
+              <span className="mx-2 pointer">
+                <a href="#reviews-section">50 Reviews</a>
+              </span>
               <Checkbox
                 checked={favourite}
                 onChange={handleFavourite}
@@ -115,6 +134,9 @@ const ProductPage = () => {
                 color="white"
                 height="45px"
                 width="100%"
+                disabled={cartList.find(
+                  (product) => product.id === category + id
+                )}
                 onClick={handleAddToCart}
               >
                 ADD TO CART
@@ -142,7 +164,8 @@ const ProductPage = () => {
           <ProductAccordion />
         </div>
       </div>
-      <div className={styles.reviewsDiv}>
+      {/* <section> */}
+      <div id="reviews-section" className={styles.reviewsDiv}>
         <div className={styles.reviewsTop}>
           <h3>Customer Reviews</h3>
           <span>SEE ALL {">"}</span>
@@ -153,6 +176,7 @@ const ProductPage = () => {
           <p>Customer Reviews on this product will appear here</p>
         </div>
       </div>
+      {/* </section> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import Button from "antd/es/button";
 import styles from "./Button.module.css";
 
 const CustomButton = ({

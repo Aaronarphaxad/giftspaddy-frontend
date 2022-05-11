@@ -28,6 +28,7 @@ const CategoryType = React.lazy(() =>
 );
 const ProductPage = React.lazy(() => import("./Pages/ProductPage/ProductPage"));
 const CartPage = React.lazy(() => import("./Pages/Cart/CartPage"));
+const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
 
 function App() {
   return (
@@ -62,6 +63,11 @@ function App() {
           exact
           path="/categories/:category/:id"
           element={<HomepageLayout children={<ProductPage />} />}
+        />
+        <Route
+          exact
+          path="/dashboard"
+          element={<HomepageLayout children={<Dashboard />} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

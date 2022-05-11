@@ -1,5 +1,4 @@
 import styles from "./WhatWeProvide.module.css";
-import verified from "../../Assets/images/verify.svg";
 
 const ProvideData = [
   {
@@ -49,7 +48,14 @@ const ListComponent = ({ text, id }) => {
   return (
     <div key={id} className={styles.ListContainer}>
       <div>
-        <img src={verified} alt="verified" height="20px" width="20px" />
+        <img
+          src={
+            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773218/verify_guc9al.svg"
+          }
+          alt="verified"
+          height="20px"
+          width="20px"
+        />
       </div>
       <div>{text}</div>
     </div>

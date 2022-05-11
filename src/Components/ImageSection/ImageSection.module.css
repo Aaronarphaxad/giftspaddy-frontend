@@ -26,7 +26,7 @@
 
 .imgContainerRight h2 {
   text-transform: uppercase;
-  font-family: "Aeonik", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .imgComponentDiv {
@@ -47,7 +47,7 @@
   color: white;
   padding: 0.5rem;
   font-weight: 400;
-  font-family: "Aeonik", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .imgInner {
@@ -95,6 +95,6 @@
     color: white;
     padding: 0.5rem;
     font-weight: 400;
-    font-family: "Aeonik", sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 }

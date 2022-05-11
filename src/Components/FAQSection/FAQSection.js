@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FAQSection.module.css";
-import { Collapse } from "antd";
+import Collapse from "antd/es/collapse";
 import { AccordionData } from "../../Data/AccordionData";
 
 const { Panel } = Collapse;

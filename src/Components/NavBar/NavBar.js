@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Navbar.module.css";
 import "../../Assets/styles/menu.css";
-import LogoImg from "../../Assets/images/Giftspaddy-logo.svg";
-import ArrowDown from "../../Assets/images/arrow-down.svg";
 import Cart from "../../Assets/images/clarity_shopping-cart-solid.svg";
 import { Link, NavLink } from "react-router-dom";
 import CustomButton from "../Button/Button";
@@ -11,7 +9,6 @@ import MenuClose from "../../Assets/icons/MenuClose";
 import ServicesDropdown from "../ServicesDropdown/ServicesDropdown";
 import CategoryDropdown from "../CategoryDropdown/CategoryDropdown";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
@@ -24,6 +21,7 @@ import { useSelector } from "react-redux";
 
 const MobileNavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const cartList = useSelector((state) => state.cart.cartList);
 
   useEffect(() => {
     document.getElementById("root").style.overflow = isOpen ? "hidden" : "auto";
@@ -46,16 +44,29 @@ const MobileNavBar = () => {
       <MenuContent isOpen={isOpen} handleClick={handleClick} />
       <div>
         <Link to="/">
-          <img src={LogoImg} alt="logo" />
+          <img
+            src={
+              "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773215/main-logo_nsqhkb.png"
+            }
+            alt="logo"
+            height="50px"
+            width="90px"
+          />
         </Link>
       </div>
       <div className="d-flex justify-content-between gap-2">
         {!isOpen && (
           <div className="mt-1">
             <IconButton aria-label="cart">
-              <StyledBadge badgeContent={4} color="info">
+              <StyledBadge badgeContent={cartList.length} color="info">
                 <Link to="/cart">
-                  <img src={Cart} alt="cart" className={styles.cart} />
+                  <img
+                    src={
+                      "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773206/clarity_shopping-cart-solid_qn8joc.svg"
+                    }
+                    alt="cart"
+                    className={styles.cart}
+                  />
                 </Link>
               </StyledBadge>
             </IconButton>
@@ -154,7 +165,7 @@ const MenuContent = ({ isOpen, handleClick }) => {
           <div style={{ opacity: isOpen ? "1" : "0" }}>
             {isLoggedIn ? (
               <>
-                <Stack Stack direction="row" spacing={2}>
+                <div className="d-flex align-items-center gap-2">
                   <Avatar alt="Aaron" src="" />
                   <div
                     className="d-flex align-items-center"
@@ -163,9 +174,15 @@ const MenuContent = ({ isOpen, handleClick }) => {
                     style={{ cursor: "pointer" }}
                   >
                     <span style={{ marginRight: "5px" }}>Aaron</span>
-                    <img src={ArrowDown} alt="arrow" height="6px" />
+                    <img
+                      src={
+                        "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/arrow-down_r7rmn9.svg"
+                      }
+                      alt="arrow"
+                      height="6px"
+                    />
                   </div>
-                </Stack>
+                </div>
                 <Popover
                   id={id}
                   open={open}
@@ -187,7 +204,9 @@ const MenuContent = ({ isOpen, handleClick }) => {
                         height="15px"
                         style={{ marginRight: "10px" }}
                       />
-                      <span>Dashboard</span>
+                      <Link to="/dashboard">
+                        <span>Dashboard</span>
+                      </Link>
                     </div>
                     <div
                       className="d-flex align-items-center"
@@ -234,7 +253,7 @@ const MenuContent = ({ isOpen, handleClick }) => {
   );
 };
 
-const NavBar = () => {
+const NavBar = ({ navbar }) => {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -302,14 +321,20 @@ const NavBar = () => {
   return (
     <>
       <MobileNavBar />
-      <div ref={ref} className={styles.navContainer}>
+      <div
+        ref={ref}
+        id={navbar ? "my-nav" : undefined}
+        className={styles.navContainer}
+      >
         <div className={styles.logoDiv}>
           <Link to="/">
             <img
-              src={LogoImg}
+              src={
+                "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773215/main-logo_nsqhkb.png"
+              }
               alt="Giftspaddy Logo"
               className={styles.logo}
-              height="90px"
+              height="70px"
               width="100px"
             />
           </Link>
@@ -352,7 +377,9 @@ const NavBar = () => {
                     transform: servicesDropdownOpen ? "rotate(180deg)" : "",
                     transition: "all 0.5s ease",
                   }}
-                  src={ArrowDown}
+                  src={
+                    "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/arrow-down_r7rmn9.svg"
+                  }
                   alt="Arrow Down"
                   className={styles.arrowDown}
                 />
@@ -386,7 +413,9 @@ const NavBar = () => {
                     transform: categoryDropdownOpen ? "rotate(180deg)" : "",
                     transition: "all 0.5s ease",
                   }}
-                  src={ArrowDown}
+                  src={
+                    "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/arrow-down_r7rmn9.svg"
+                  }
                   alt="Arrow Down"
                   className={styles.arrowDown}
                 />
@@ -399,12 +428,19 @@ const NavBar = () => {
           {/* Login buttons */}
           <div className={styles.linksRight}>
             {isLoggedIn ? (
-              <>
-                <Stack Stack direction="row" spacing={2}>
+              <div className="d-flex align-items-center gap-1">
+                <div className="d-flex align-items-center gap-2">
                   <IconButton aria-label="cart">
                     <StyledBadge badgeContent={cartList.length} color="primary">
                       <Link to="/cart">
-                        <img src={Cart} alt="cart" className={styles.cart} />
+                        <img
+                          src={
+                            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773206/clarity_shopping-cart-solid_qn8joc.svg"
+                          }
+                          alt="cart"
+                          className={styles.cart}
+                          height="22px"
+                        />
                       </Link>
                     </StyledBadge>
                   </IconButton>
@@ -418,9 +454,15 @@ const NavBar = () => {
                     <span style={{ marginRight: "5px", fontSize: "1rem" }}>
                       Aaron
                     </span>
-                    <img src={ArrowDown} alt="arrow" height="6px" />
+                    <img
+                      src={
+                        "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/arrow-down_r7rmn9.svg"
+                      }
+                      alt="arrow"
+                      height="6px"
+                    />
                   </div>
-                </Stack>
+                </div>
                 <Popover
                   id={id}
                   open={open}
@@ -442,7 +484,9 @@ const NavBar = () => {
                         height="15px"
                         style={{ marginRight: "10px" }}
                       />
-                      <span>Dashboard</span>
+                      <Link to="/dashboard">
+                        <span>Dashboard</span>
+                      </Link>
                     </div>
                     <div
                       className="d-flex align-items-center mb-2"
@@ -461,17 +505,18 @@ const NavBar = () => {
                         bgColor="#058196"
                         height="35px"
                         width="100%"
+                        onClick={() => setIsLoggedIn(false)}
                       >
                         Log out
                       </CustomButton>
                     </p>
                   </div>
                 </Popover>
-              </>
+              </div>
             ) : (
               <>
                 <IconButton aria-label="cart">
-                  <StyledBadge badgeContent={4} color="info">
+                  <StyledBadge badgeContent={cartList.length} color="info">
                     <Link to="/cart">
                       <img src={Cart} alt="cart" className={styles.cart} />
                     </Link>

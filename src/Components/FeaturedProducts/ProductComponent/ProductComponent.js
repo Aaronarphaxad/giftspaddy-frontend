@@ -1,22 +1,38 @@
 import CustomButton from "../../Button/Button";
 import styles from "./ProductComponent.module.css";
-import FeatureImg from "../../../Assets/images/featured-img.png";
 import { Link, useNavigate } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../../Pages/Cart/redux/cartSlice";
 
 const ProductComponent = ({ image, title, price, category }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   const mobile = window.innerWidth <= 500;
 
   const styling = {
-    backgroundImage: `url(${FeatureImg})`,
+    backgroundImage: `url(${"https://res.cloudinary.com/gifts-paddy/image/upload/v1651773208/featured-img_siaqbe.png"})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: 1,
+        title: "Special Hamper",
+        image: "",
+        quantity: 1,
+        description:
+          "This is a special hamper for {category}, made with love from naija! Packed with gourmet products of the highest quality. People love this.",
+        price: 400,
+      })
+    );
   };
 
   // const handleClick = (e) => {
@@ -37,7 +53,7 @@ const ProductComponent = ({ image, title, price, category }) => {
   return (
     <>
       {loading ? (
-        <div style={{ width: "220px" }}>
+        <div className="d-flex flex-column" style={{ width: "220px" }}>
           <Box sx={{ pt: 0.5 }}>
             <Skeleton variant="rectangular" width={"90%"} height={118} />
             <Skeleton width="70%" />
@@ -62,7 +78,11 @@ const ProductComponent = ({ image, title, price, category }) => {
             // onMouseLeave={() => setShowButton(false)}
             className={styles.btnDiv}
           >
-            <CustomButton width={"100%"} height={"45px"}>
+            <CustomButton
+              onClick={handleAddToCart}
+              width={"100%"}
+              height={"45px"}
+            >
               Add to Cart
             </CustomButton>
           </div>

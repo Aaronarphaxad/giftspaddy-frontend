@@ -1,32 +1,6 @@
-@font-face {
-  font-family: "Aeonik";
-  src: url("../src/Assets/fonts/Aeonik-Medium.otf"); /* IE9 Compat Modes */
-  src: url("../src/Assets/fonts/Aeonik-Black.otf") format("embedded-opentype"),
-    /* IE6-IE8 */ url("../src/Assets/fonts/Aeonik-Black.otf") format("woff2"),
-    /* Super Modern Browsers */ url("../src/Assets/fonts/Aeonik-Black.otf")
-      format("woff"),
-    /* Pretty Modern Browsers */ url("../src/Assets/fonts/Aeonik-Black.otf")
-      format("truetype"),
-    /* Safari, Android, iOS */ url("../src/Assets/fonts/Aeonik-Black.otf")
-      format("svg"); /* Legacy iOS */
-}
-
-@font-face {
-  font-family: "Aeonik-light";
-  src: url("../src/Assets/fonts/Aeonik-Light.otf"); /* IE9 Compat Modes */
-  src: url("../src/Assets/fonts/Aeonik-Black.otf") format("embedded-opentype"),
-    /* IE6-IE8 */ url("../src/Assets/fonts/Aeonik-Black.otf") format("woff2"),
-    /* Super Modern Browsers */ url("../src/Assets/fonts/Aeonik-Light.otf")
-      format("otf"),
-    /* Pretty Modern Browsers */ url("../src/Assets/fonts/Aeonik-Light.otf")
-      format("otf"),
-    /* Safari, Android, iOS */ url("../src/Assets/fonts/Aeonik-Light.otf")
-      format("otf"); /* Legacy iOS */
-}
-
 .App {
   text-align: center;
-  font-family: "Aeonik", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .ant-collapse-header {
@@ -66,6 +40,11 @@ a:hover {
 } */
 .pointer {
   cursor: pointer;
+}
+
+#my-nav {
+  background-color: #fff !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .loading-div {

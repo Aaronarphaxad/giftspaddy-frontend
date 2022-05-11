@@ -1,7 +1,5 @@
 import styles from "./Services.module.css";
 import LearnArrow from "../../Assets/images/learn-arrow-white.png";
-import hamper from "../../Assets/images/hamper.png";
-import secret from "../../Assets/images/secret-gift.png";
 import { Link } from "react-router-dom";
 
 const ServiceComponent = ({ invert, rightColor, image, service, url }) => {
@@ -61,33 +59,43 @@ const Services = () => {
     <div className={styles.servicesContainer}>
       <ServiceComponent
         rightColor="#FFC77E"
-        image={hamper}
+        image={
+          "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773209/hamper_t0zih0.png"
+        }
         service="Gifts Paddy Special"
         url="special"
       />
       <ServiceComponent
         rightColor="#D91448"
-        image={secret}
+        image={
+          "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773218/secret-gift_yv9szd.png"
+        }
         invert={true}
         service="Secret Paddy"
         url="secret"
       />
       <ServiceComponent
         rightColor="#058196"
-        image={hamper}
+        image={
+          "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773209/hamper_t0zih0.png"
+        }
         service="Souvenir"
         url="souvenir"
       />
       <ServiceComponent
         rightColor="#592E59"
-        image={hamper}
+        image={
+          "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773209/hamper_t0zih0.png"
+        }
         invert={true}
         service="Charity"
         url="charity"
       />
       <ServiceComponent
         rightColor="#000"
-        image={hamper}
+        image={
+          "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773209/hamper_t0zih0.png"
+        }
         service="Wishlist/Registry"
         url="wishlist"
       />
