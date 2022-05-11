@@ -1,8 +1,4 @@
 import styles from "./ImageSection.module.css";
-import Verify from "../../Assets/images/verify.svg";
-import Img1 from "../../Assets/images/landingImg1.png";
-import Img2 from "../../Assets/images/landingImg2.png";
-import Img3 from "../../Assets/images/landingImg3.png";
 
 // Image component
 const ImageComponent = ({ image, title, text, innerTag }) => {
@@ -16,7 +12,13 @@ const ImageComponent = ({ image, title, text, innerTag }) => {
     <div className={styles.imgComponentDiv}>
       <div style={styling} className={styles.imgDiv}>
         <div className={styles.imgInner}>
-          <img src={Verify} alt="img" height="25px" />
+          <img
+            src={
+              "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773218/verify_guc9al.svg"
+            }
+            alt="img"
+            height="25px"
+          />
           <span>{innerTag}</span>
         </div>
       </div>
@@ -33,13 +35,17 @@ const ImageSection = () => {
     <div className={styles.imgContainer}>
       <div className={styles.imgContainerLeft}>
         <ImageComponent
-          image={Img1}
+          image={
+            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651843672/landingImg1_zoxwph.png"
+          }
           innerTag="Shop Gifts"
           title="Shop from our variety of gifts"
           text="With our wide variety of products, you can choose from a wide range of gifts for your loved ones or business partners. There is a gift available for any ocassion you can think of."
         />
         <ImageComponent
-          image={Img2}
+          image={
+            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651843672/landingImg2_ukiw7g.png"
+          }
           innerTag="Local delivery"
           title="Get gifts delivered to your doorstep"
           text="Order from anywhere in the world and get them delivered to your loved ones at home. For over 50% less than it would cost to ship globally."
@@ -48,7 +54,9 @@ const ImageSection = () => {
       <div className={styles.imgContainerRight}>
         <h2>Order globally, ship locally</h2>
         <ImageComponent
-          image={Img3}
+          image={
+            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651843673/landingImg3_obnyom.png"
+          }
           innerTag="Send Gifts"
           title="Send gifts to your loved ones from us"
           text="Anyone who receives a gift from Gifts Paddy feels special. We make sure that the gift is received in the most beautiful way possible."

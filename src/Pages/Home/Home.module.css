@@ -20,7 +20,7 @@
 }
 
 .left h1 {
-  font-family: "Aeonik";
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   font-size: 90px;
@@ -51,15 +51,15 @@
 }
 
 .sendHeader h2 {
-  font-family: "Aeonik-light";
+  font-family: "Roboto";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 36px;
   line-height: 43px;
 }
 
 .sendHeader p {
-  font-family: "Aeonik-light";
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -90,7 +90,7 @@
 }
 
 .sendSelectRow h3 {
-  font-family: "Aeonik";
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   font-size: 22.1218px;

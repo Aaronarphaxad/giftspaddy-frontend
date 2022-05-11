@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Register.module.css";
-import Logo from "../../Assets/images/main-logo.png";
-import show from "../../Assets/images/bxs_show.png";
-import hide from "../../Assets/images/bxs_hide.png";
 import CustomButton from "../../Components/Button/Button";
 import google from "../../Assets/images/google.png";
 import toast, { Toaster } from "react-hot-toast";
@@ -74,7 +71,9 @@ const Register = () => {
           <Link to="/">
             <img
               className={styles.loginImg}
-              src={Logo}
+              src={
+                "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773215/main-logo_nsqhkb.png"
+              }
               alt="logo"
               height="70px"
             />
@@ -110,9 +109,21 @@ const Register = () => {
               onChange={handleChange}
             />
             {showPassword ? (
-              <img src={hide} alt="hide" onClick={handleShowPassword} />
+              <img
+                src={
+                  "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773206/bxs_hide_twwfya.png"
+                }
+                alt="hide"
+                onClick={handleShowPassword}
+              />
             ) : (
-              <img src={show} alt="show" onClick={handleShowPassword} />
+              <img
+                src={
+                  "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773206/bxs_show_gni3lm.png"
+                }
+                alt="show"
+                onClick={handleShowPassword}
+              />
             )}
           </div>
           {password && (

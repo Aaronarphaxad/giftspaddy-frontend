@@ -1,6 +1,6 @@
 .topSection {
-  height: 90vh;
-  margin-top: 6rem;
+  height: 100vh;
+  /* margin-top: 6rem; */
   display: flex;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .left h2 {
-  font-family: "Aeonik";
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
   font-size: 78px;
@@ -32,7 +32,7 @@
 .right {
   width: 50%;
   height: 100%;
-  background-image: url("../../Assets/images/about-img.png");
+  background-image: url("https://res.cloudinary.com/gifts-paddy/image/upload/v1651843672/about-img_bfxfjq.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

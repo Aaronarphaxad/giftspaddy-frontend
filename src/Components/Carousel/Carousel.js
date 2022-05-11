@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Carousel.module.css";
 import Carousel, { consts } from "react-elastic-carousel";
 import Slider from "react-slick";
-import NavArrow from "../../Assets/images/Arrow-next.png";
 import NavArrowBack from "../../Assets/images/arrow-prev.png";
 
 export class CustomCarousel extends React.Component {
@@ -40,7 +39,9 @@ export class CustomCarousel extends React.Component {
             onClick={() => this.carousel.slidePrev()}
           >
             <img
-              src={NavArrow}
+              src={
+                "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/Arrow-next_au6zkm.png"
+              }
               alt="arrow-left"
               height="30px"
               width="30px"
@@ -51,7 +52,14 @@ export class CustomCarousel extends React.Component {
             className={styles.copierBtns}
             onClick={() => this.carousel.slideNext()}
           >
-            <img src={NavArrow} alt="arrow-right" height="30px" width="30px" />
+            <img
+              src={
+                "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/Arrow-next_au6zkm.png"
+              }
+              alt="arrow-right"
+              height="30px"
+              width="30px"
+            />
           </button>
         </div>
       </div>
@@ -65,7 +73,12 @@ export function CustomCarousel2({ children }) {
       type === consts.PREV ? (
         <img src={NavArrowBack} alt="Nav Arrow" />
       ) : (
-        <img src={NavArrow} alt="Nav Arrow" />
+        <img
+          src={
+            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/Arrow-next_au6zkm.png"
+          }
+          alt="Nav Arrow"
+        />
       );
     return (
       <div onClick={onClick} disabled={isEdge}>

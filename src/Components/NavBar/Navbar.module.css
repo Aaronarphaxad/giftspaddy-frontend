@@ -6,7 +6,7 @@
   width: 100%;
   z-index: 10;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: white;
+  background: transparent;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .logo {
-  height: 60px !important;
+  height: 50px !important;
   width: 101px;
 }
 
@@ -22,8 +22,8 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 1rem;
-  /* font-family: "Aeonik", sans-serif; */
+  font-size: 0.9rem;
+  /* font-family: "Roboto", sans-serif; */
   font-weight: 500;
   text-decoration: none !important;
 }
@@ -39,12 +39,14 @@
 .logoDiv {
   padding-left: 2rem;
   width: 30%;
+  background: transparent;
 }
 
 .linksDiv {
   width: 70%;
   display: flex;
   justify-content: space-evenly;
+  background: transparent;
 }
 
 .linksLeft {
@@ -59,6 +61,7 @@
   display: flex;
   width: 20%;
   align-items: center;
+  font-size: 0.9rem;
   gap: 1rem;
   justify-content: center;
 }
@@ -79,6 +82,14 @@
   height: 160px;
   width: 150px;
   padding: 0.5rem 0;
+}
+
+.profileMenu a {
+  color: #000;
+}
+
+.profileMenu a:hover {
+  color: #058196;
 }
 
 .profileMenu div {

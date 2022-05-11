@@ -1,5 +1,4 @@
 import styles from "./Home.module.css";
-import HomeIllustration from "../../Assets/images/Gift-cuate.png";
 import CustomButton from "../../Components/Button/Button";
 import toast, { Toaster } from "react-hot-toast";
 import VideoSection from "../../Components/VideoSection/VideoSection";
@@ -54,10 +53,14 @@ const TopSection = () => {
         </div>
       </div>
       <div className={styles.right}>
-        <img src={HomeIllustration} alt="Home" width={"100%"} />
-        <a style={{ visibility: "hidden" }} href="https://storyset.com/people">
-          People illustrations by Storyset
-        </a>
+        <img
+          rel="preload"
+          src={
+            "https://res.cloudinary.com/gifts-paddy/image/upload/v1651843251/Gift-cuate_pnr6yy.png"
+          }
+          alt="Home"
+          width={"100%"}
+        />
       </div>
     </div>
   );
