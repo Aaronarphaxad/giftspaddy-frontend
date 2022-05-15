@@ -53,6 +53,32 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className={styles.dashboardMenuMobile}>
+        <span
+          id={menu === "account" ? styles.active : undefined}
+          onClick={() => setMenu("account")}
+        >
+          Account
+        </span>
+        <span
+          id={menu === "order" ? styles.active : undefined}
+          onClick={() => setMenu("order")}
+        >
+          History
+        </span>
+        <span
+          id={menu === "favourite" ? styles.active : undefined}
+          onClick={() => setMenu("favourite")}
+        >
+          Favorite
+        </span>
+        <span
+          id={menu === "saved" ? styles.active : undefined}
+          onClick={() => setMenu("saved")}
+        >
+          Recipients
+        </span>
+      </div>
       <div className={styles.dashboardSpace}>
         <MenuCard menu={menu}>
           {menu === "account" && <div>Account</div>}

@@ -6,44 +6,63 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, reduceQuantity, removeFromCart } from "./redux/cartSlice";
+import {
+  reduceQuantity,
+  increaseQuantity,
+  removeFromCart,
+  editAddress,
+} from "./redux/cartSlice";
 import Modal from "react-bootstrap/Modal";
+import EditIcon from "../../Assets/icons/EditIcon";
 
-// CAR COMPONENT
+// CART COMPONENT
 const CartComponent = ({ cartData }) => {
-  const [cartItems, setCartItems] = useState(1);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [newAddress, setNewAddress] = useState(
+    cartData.deliveryDetails.address
+  );
+  const [loading, setLoading] = useState(false);
 
+  // Modals control
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleEditClose = () => setShowEdit(false);
+  const handleEditShow = () => setShowEdit(true);
 
   const handleRemove = () => {
-    console.log(cartData.id);
     dispatch(removeFromCart(cartData.id));
     handleClose();
   };
 
-  /**
-   * If the action is increment, increment the cartItems by 1. If the action is decrement, decrement the
-   * cartItems by 1
-   * @param action - This is the action that we want to perform on the cart.
-   */
-  const handleCart = (action) => {
-    if (cartItems === 1) {
-      //   return;
-    }
-    if (action === "increment") {
-      setCartItems((prev) => (prev = prev + 1));
-    }
-    if (action === "decrement") {
-      cartItems > 1 && setCartItems((prev) => (prev = prev - 1));
-    }
+  const handleAddressChange = (e) => {
+    setNewAddress(e.target.value);
   };
 
+  const handleEditAddress = () => {
+    setLoading(true);
+    setTimeout(() => {
+      dispatch(
+        editAddress({
+          id: cartData.id,
+          newAddress: newAddress,
+        })
+      );
+      setLoading(false);
+      handleEditClose();
+    }, 2500);
+  };
+
+  /**
+   * It takes an action as an argument and if the action is "increment" it dispatches the addToCart
+   * action with the cartData as an argument. If the action is "decrement" it dispatches the
+   * reduceQuantity action with the cartData.id as an argument
+   * @param action - This is the action that will be performed on the cart item.
+   */
   const handleQuantity = (action) => {
     if (action === "increment") {
-      dispatch(addToCart(cartData));
+      dispatch(increaseQuantity(cartData.id));
     }
     if (action === "decrement") {
       dispatch(reduceQuantity(cartData.id));
@@ -69,6 +88,32 @@ const CartComponent = ({ cartData }) => {
           </div>
         </Modal.Footer>
       </Modal>
+      <Modal centered show={showEdit} onHide={handleEditClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Address</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <textarea
+            className={styles.inputs}
+            value={newAddress}
+            onChange={handleAddressChange}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="d-flex align-items-center gap-1">
+            <Button onClick={handleEditClose} variant="outlined" size="small">
+              Cancel
+            </Button>
+            <Button
+              onClick={handleEditAddress}
+              variant="contained"
+              size="small"
+            >
+              {loading ? "Saving..." : "Save"}
+            </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
       <div className={styles.cartCompDiv}>
         <div className={styles.cartImgDiv}>
           <img
@@ -83,13 +128,18 @@ const CartComponent = ({ cartData }) => {
         </div>
         <div className={styles.cartCompBody}>
           <p className={styles.cartCompBodyTitle}>
-            Special Hamper ${cartData.price}
+            {cartData.title} ${cartData.price}
           </p>
           <p className={styles.cartCompBodyTitleAddress}>
-            Address: <br /> Road 2, opposite Zenith bank, senator Peter street,
-            garki, FCT, Abuja
+            Address: <br /> {cartData.deliveryDetails.address}{" "}
+            <span onClick={handleEditShow}>
+              <EditIcon />
+            </span>
           </p>
-          <p>Phone: +2347085769003</p>
+          <p style={{ textTransform: "capitalize" }}>
+            City: {cartData.deliveryDetails.city}
+          </p>
+          <p>Phone: {cartData.deliveryDetails.phone}</p>
         </div>
         <div className={styles.cartCompActions}>
           <div className="d-flex align-items-center gap-2">
@@ -121,12 +171,28 @@ const CartComponent = ({ cartData }) => {
   );
 };
 
+// CART PAGE
 const CartPage = () => {
   const [checked, setChecked] = useState(true);
   const cartList = useSelector((state) => state.cart.cartList);
   const dispatch = useDispatch();
+  const express = cartList.filter(
+    (item) => item.deliveryDetails.express === true
+  );
 
-  console.log(cartList);
+  /**
+   * It returns the sum of the service fee and the total price of all the items in the cart
+   * @returns The total price of the items in the cart, including the service fee.
+   */
+  const getGrandTotal = () => {
+    const serviceFee = cartList.length * 20;
+    const totalPrice = cartList.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+
+    return serviceFee + totalPrice + express.length * 20;
+  };
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -135,63 +201,80 @@ const CartPage = () => {
     <div className={styles.cartContainer}>
       <div className={styles.cartWrapper}>
         <div className={styles.cartGroup}>
-          <h5 className="mb-0 px-2 pt-2">CART (4)</h5>
+          <h5 className="mb-0 px-2 pt-2">CART ({cartList.length})</h5>
           <hr />
           <div className={styles.cartGroupBody}>
             {cartList.map((item) => (
               <CartComponent cartData={item} />
             ))}
 
-            {cartList.length === 0 && <div>No items in cart :(</div>}
+            {cartList.length === 0 && (
+              <div>
+                All items in your cart will appear here. Cart is empty :(
+              </div>
+            )}
             {/* <CartComponent />
             <CartComponent />
             <CartComponent />
             <CartComponent /> */}
           </div>
         </div>
-        <div className={styles.cartSummary}>
-          <h5 className="mb-0 px-2 pt-2">CART SUMMARY</h5>
-          <hr />
-          <div>
-            <div className="d-flex align-items-center justify-content-between w-100 px-2">
-              <span className={styles.subtotal}>Service fee:</span>
-              <span className={styles.subtotalNumber}>$18.00</span>
-            </div>
-            <div className="d-flex align-items-center justify-content-between w-100 px-2">
-              <span className={styles.subtotal}>Express delivery:</span>
-              <span className={styles.subtotalNumber}>$20.00</span>
-            </div>
-            <div className="d-flex align-items-center justify-content-between w-100 px-2">
-              <span style={{ fontWeight: "bold" }} className={styles.subtotal}>
-                Total:
-              </span>
-              <span
-                style={{ fontWeight: "bold" }}
-                className={styles.subtotalNumber}
-              >
-                $1538.00
-              </span>
-            </div>
-            <div className="d-flex align-items-center w-100 px-2 mt-3">
-              <Checkbox
-                checked={checked}
-                onChange={handleChange}
-                inputProps={{ "aria-label": "controlled" }}
-              />
-              <small>Accept our Terms & Policy</small>
-            </div>
-            <div className="px-2">
-              <CustomButton
-                bgColor="#058196"
-                width="100%"
-                height="45px"
-                disabled={checked ? false : true}
-              >
-                CHECKOUT ($1538.00)
-              </CustomButton>
+        {cartList.length !== 0 && (
+          <div className={styles.cartSummary}>
+            <h5 className="mb-0 px-2 pt-2">CART SUMMARY</h5>
+            <hr />
+            <div>
+              <div className="d-flex align-items-center justify-content-between w-100 px-2">
+                <span className={styles.subtotal}>Service fee:</span>
+                <span className={styles.subtotalNumber}>
+                  ${cartList.length * 20}
+                </span>
+              </div>
+              <div className="d-flex align-items-center justify-content-between w-100 px-2">
+                <span className={styles.subtotal}>Express delivery:</span>
+                <span className={styles.subtotalNumber}>
+                  ${express.length * 20}
+                </span>
+              </div>
+              <div className="d-flex align-items-center justify-content-between w-100 px-2">
+                <span
+                  style={{ fontWeight: "bold" }}
+                  className={styles.subtotal}
+                >
+                  Total:
+                </span>
+                <span
+                  style={{ fontWeight: "bold" }}
+                  className={styles.subtotalNumber}
+                >
+                  $
+                  {cartList.reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                  )}
+                </span>
+              </div>
+              <div className="d-flex align-items-center w-100 px-2 mt-3">
+                <Checkbox
+                  checked={checked}
+                  onChange={handleChange}
+                  inputProps={{ "aria-label": "controlled" }}
+                />
+                <small>Accept our Terms & Policy</small>
+              </div>
+              <div className="px-2">
+                <CustomButton
+                  bgColor="#058196"
+                  width="100%"
+                  height="45px"
+                  disabled={checked ? false : true}
+                >
+                  CHECKOUT ${getGrandTotal()}
+                </CustomButton>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

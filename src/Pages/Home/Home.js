@@ -8,8 +8,8 @@ import CategorySection from "../../Components/CategorySection/CategorySection";
 import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts";
 import ReviewSection from "../../Components/ReviewSection/ReviewSection";
 import SponsorSection from "../../Components/SponsorSection/SponsorSection";
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import handleDate from "../../Helpers/VerifyDate";
 
 // TOP SECTION
 const TopSection = () => {
@@ -68,9 +68,10 @@ const TopSection = () => {
 
 // SECOND SECTION
 const SecondSection = () => {
+  const navigate = useNavigate();
   const mobile = window.innerWidth < 768;
-  const notifyError = () =>
-    toast.error("Please fill all the fields", {
+  const notifyError = (msg) =>
+    toast.error(msg ? msg : "Please fill all the fields", {
       position: "top-center",
       duration: 3000,
     });
@@ -88,8 +89,12 @@ const SecondSection = () => {
       notifyError();
       return;
     }
-    notifySuccess();
-    console.log(city, category, date);
+    if (handleDate(date)) {
+      notifySuccess();
+      navigate(`/category/${category}`);
+    } else {
+      notifyError("Please pick a date 3 days from today");
+    }
   };
   return (
     <>

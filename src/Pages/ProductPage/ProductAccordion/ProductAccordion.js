@@ -10,8 +10,9 @@ import toast, { Toaster } from "react-hot-toast";
 import CustomButton from "../../../Components/Button/Button";
 import Rating from "@mui/material/Rating";
 import moment from "moment";
+import handleDate from "../../../Helpers/VerifyDate";
 
-const ProductAccordion = () => {
+const ProductAccordion = ({ setDeliveryDetails }) => {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
@@ -19,7 +20,7 @@ const ProductAccordion = () => {
   const [instruction, setInstruction] = useState("");
   const [expanded, setExpanded] = useState("panel1");
   const [ratingValue, setValue] = useState(2);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const handleRadioChange = (event) => {
     setChecked(event.target.checked);
@@ -34,16 +35,28 @@ const ProductAccordion = () => {
     const message = document.getElementById("update-message").value;
     const instruction = document.getElementById("update-instruction").value;
     const date = document.getElementById("update-date").value;
-    if (!address || !phone || !date) {
-      notifyError();
+    const sender = document.getElementById("update-sender").value;
+    const city = document.getElementById("update-city").value;
+    if (!address || !phone || !date || !city) {
+      notifyError("Please enter delivery details marked *");
     }
-    if (address || phone || date) {
+    if (address && phone && date && city) {
       if (handleDate(date)) {
         notifySuccess();
         setAddress(address);
         setPhone(phone);
         setMessage(message);
         setInstruction(instruction);
+        setDeliveryDetails({
+          address,
+          phone,
+          date,
+          city,
+          sender: sender ? sender : null,
+          message: message ? message : null,
+          instruction: instruction ? instruction : null,
+          express: checked ? true : false,
+        });
       } else {
         notifyError("Please enter a date 3 days after today");
       }
@@ -54,26 +67,16 @@ const ProductAccordion = () => {
     toast.error(
       msg ? msg : "Please enter address, phone number and delivery date",
       {
-        position: "bottom-left",
+        position: "top-center",
         duration: 3000,
       }
     );
   const notifySuccess = () =>
     toast.success(`Information saved`, {
-      position: "bottom-left",
+      position: "top-center",
       duration: 3000,
     });
 
-  // Function to verify date
-  const handleDate = (pickedDate) => {
-    const selectedDate = moment(pickedDate);
-    const threeDays = moment().add(2, "days");
-
-    if (selectedDate.isSameOrBefore(threeDays)) {
-      return false;
-    }
-    return true;
-  };
   return (
     <div className={styles.accordionContainer}>
       <Toaster />
@@ -127,16 +130,48 @@ const ProductAccordion = () => {
             This is where you enter details of the delivery. Also special
             requests/instruction.
           </Typography>
-          <p className={styles.inputLabel}>Address *</p>
+          <p className={styles.inputLabel}>
+            Address <span style={{ color: "red" }}>*</span>
+          </p>
           <textarea
             id="update-address"
             className={styles.inputs}
             name="address"
             rows="2"
           />
-          <div className="d-flex align-items-center">
+          <div className="d-flex ">
             <div className="w-50">
-              <p className={styles.inputLabel}>Phone Number *</p>
+              <p className={styles.inputLabel}>
+                City <span style={{ color: "red" }}>*</span>
+              </p>
+              <select
+                className={styles.inputs}
+                name="Select City"
+                id="update-city"
+              >
+                <option value=""></option>
+                <option value="lagos">Lagos</option>
+                <option value="abuja">Abuja</option>
+                <option value="PH">Port Harcourt</option>
+              </select>
+            </div>
+            <div className="w-50">
+              <p className={styles.inputLabel}>
+                Sender Email <span style={{ color: "red" }}>*</span>
+              </p>
+              <input
+                id="update-sender"
+                className={styles.inputs}
+                name="phone"
+                type="email"
+              />
+            </div>
+          </div>
+          <div className="d-flex align-items-center">
+            <div className="d-inline w-50">
+              <p className={styles.inputLabel}>
+                Phone Number <span style={{ color: "red" }}>*</span>
+              </p>
               <input
                 id="update-phone"
                 className={styles.inputs}
@@ -144,8 +179,10 @@ const ProductAccordion = () => {
                 type="number"
               />
             </div>
-            <div className="w-50">
-              <p className={styles.inputLabel}>Delivery date *</p>
+            <div className="d-inline w-50">
+              <p className={styles.inputLabel}>
+                Delivery date <span style={{ color: "red" }}>*</span>
+              </p>
               <input
                 id="update-date"
                 className={styles.inputs}
