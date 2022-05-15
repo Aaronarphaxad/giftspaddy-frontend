@@ -76,3 +76,42 @@
   color: #058196;
   font-weight: 600;
 }
+
+.dashboardMenuMobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .dashboardMenuMobile {
+    display: block;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  #active {
+    background-color: #058196;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+  .cardDiv {
+    border-radius: 0;
+    width: 100%;
+  }
+  .dashboardMenu {
+    display: none;
+  }
+}

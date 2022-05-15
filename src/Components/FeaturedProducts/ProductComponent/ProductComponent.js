@@ -35,16 +35,6 @@ const ProductComponent = ({ image, title, price, category }) => {
     );
   };
 
-  // const handleClick = (e) => {
-  //   if (!category) {
-  //     // navigate(`/categories/gift/1`);
-  //     window.location.pathname = "/categories/gift/1";
-  //     window.location.reload();
-  //   } else {
-  //     navigate(`/categories/${category}/2`);
-  //   }
-  // };
-
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -55,7 +45,7 @@ const ProductComponent = ({ image, title, price, category }) => {
       {loading ? (
         <div className="d-flex flex-column" style={{ width: "220px" }}>
           <Box sx={{ pt: 0.5 }}>
-            <Skeleton variant="rectangular" width={"90%"} height={118} />
+            <Skeleton variant="rectangular" width={"90%"} height={150} />
             <Skeleton width="70%" />
             <Skeleton width="60%" />
             <Skeleton width="90%" />
@@ -66,25 +56,12 @@ const ProductComponent = ({ image, title, price, category }) => {
           <div style={styling} className={styles.featureImg}></div>
           <div className={styles.featureDetails}>
             <Link
-              style={{ textDecoration: "none", color: "balck" }}
+              style={{ textDecoration: "none", color: "black" }}
               to={category ? `/categories/${category}/2` : "/categories/gift/1"}
             >
               <p style={{ color: "black" }}>Lorem Ipsum</p>
             </Link>
             <p>$ 400</p>
-          </div>
-          <div
-            // onMouseOver={() => setShowButton(true)}
-            // onMouseLeave={() => setShowButton(false)}
-            className={styles.btnDiv}
-          >
-            <CustomButton
-              onClick={handleAddToCart}
-              width={"100%"}
-              height={"45px"}
-            >
-              Add to Cart
-            </CustomButton>
           </div>
         </div>
       )}
