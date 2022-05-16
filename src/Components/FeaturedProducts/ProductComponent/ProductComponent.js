@@ -53,7 +53,9 @@ const ProductComponent = ({ image, title, price, category }) => {
         </div>
       ) : (
         <div className={styles.featureContainer}>
-          <div style={styling} className={styles.featureImg}></div>
+          <div style={styling} className={styles.featureImg}>
+            {/* <img className="lazyload" data-src={image} alt="img" /> */}
+          </div>
           <div className={styles.featureDetails}>
             <Link
               style={{ textDecoration: "none", color: "black" }}

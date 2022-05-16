@@ -9,6 +9,9 @@ import reportWebVitals from "./reportWebVitals";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { store } from "./store";
 import { Provider } from "react-redux";
+import "lazysizes";
+// import a plugin
+import "lazysizes/plugins/parent-fit/ls.parent-fit";
 
 const theme = createTheme({
   status: {
@@ -17,7 +20,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#058196",
-      darker: "#053e85",
+      darker: "#046577",
     },
     neutral: {
       main: "#64748B",

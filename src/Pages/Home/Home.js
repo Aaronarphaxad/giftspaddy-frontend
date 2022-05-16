@@ -10,6 +10,7 @@ import ReviewSection from "../../Components/ReviewSection/ReviewSection";
 import SponsorSection from "../../Components/SponsorSection/SponsorSection";
 import { Link, useNavigate } from "react-router-dom";
 import handleDate from "../../Helpers/VerifyDate";
+import GuyOrder from "../../Assets/icons/Order";
 
 // TOP SECTION
 const TopSection = () => {
@@ -34,32 +35,18 @@ const TopSection = () => {
               <span>Get Started</span>
             </Link>
           </CustomButton>
-          {/* <Button
-            style={{
-              height: mobile ? "50px" : "74px",
-              width: mobile ? "70%" : "350px",
-              fontSize: mobile ? "18px" : "24px",
-              borderRadius: "8px",
-              padding: "0.5rem 1rem",
-            }}
-            variant="contained"
-            size="large"
-            color="primary"
-          >
-            <Link to="/register">
-              <span className="w-100">Get Started</span>
-            </Link>
-          </Button> */}
         </div>
       </div>
       <div className={styles.right}>
         <img
           rel="preload"
-          src={
+          className="lazyload"
+          data-src={
             "https://res.cloudinary.com/gifts-paddy/image/upload/v1651843251/Gift-cuate_pnr6yy.png"
           }
           alt="Home"
-          width={"100%"}
+          width={mobile ? "290px" : "600px"}
+          height={mobile ? "350px" : "600px"}
         />
       </div>
     </div>

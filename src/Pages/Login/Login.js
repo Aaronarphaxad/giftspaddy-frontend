@@ -63,8 +63,8 @@ const Login = () => {
         <div className={styles.rightInnerDiv}>
           <Link to="/">
             <img
-              className={styles.loginImg}
-              src={
+              className="lazyload"
+              data-src={
                 "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773215/main-logo_nsqhkb.png"
               }
               alt="logo"
