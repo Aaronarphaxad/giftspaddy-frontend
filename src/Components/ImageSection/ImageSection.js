@@ -2,21 +2,29 @@ import styles from "./ImageSection.module.css";
 
 // Image component
 const ImageComponent = ({ image, title, text, innerTag }) => {
-  const styling = {
-    backgroundImage: `url(${image})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  };
+  // const styling = {
+  //   backgroundImage: `url(${image})`,
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat",
+  // };
   return (
     <div className={styles.imgComponentDiv}>
-      <div style={styling} className={styles.imgDiv}>
+      <div className={styles.imgDiv}>
+        <img
+          id={styles.imgCover}
+          data-src={image}
+          alt="img"
+          className="lazyload"
+          // height="25px"
+        />
         <div className={styles.imgInner}>
           <img
-            src={
+            data-src={
               "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773218/verify_guc9al.svg"
             }
             alt="img"
+            className="lazyload"
             height="25px"
           />
           <span>{innerTag}</span>

@@ -11,7 +11,12 @@ const Footer = () => {
     <div className={styles.footerContainer}>
       <div className={styles.footerLeft}>
         <div className={styles.footerLogo}>
-          <img src={LogoWhite} alt="logo" height="70px" />
+          <img
+            className="lazyload"
+            data-src={LogoWhite}
+            alt="logo"
+            height="70px"
+          />
         </div>
         <div className={styles.socialsDiv}>
           <img

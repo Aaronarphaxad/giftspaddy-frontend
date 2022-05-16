@@ -9,11 +9,12 @@ import { useNavigate } from "react-router-dom";
 const ServiceDetail = () => {
   const { service } = useParams();
   const [serviceObj, setServiceObj] = useState({});
-  const { title, image, text } = serviceObj;
+  const { title, image, text, active } = serviceObj;
   const navigate = useNavigate();
 
   const handleClick = (service) => {
     if (service === "special") navigate("/register");
+    if (service === "secret") navigate("/secret-paddy");
   };
 
   useEffect(() => {
@@ -36,12 +37,12 @@ const ServiceDetail = () => {
           <h1>{title}</h1>
           <p>{text}</p>
           <div className={styles.serviceBtnDiv}>
-            {service !== "special" && (
+            {!active && (
               <Button variant="outlined" disabled>
                 Coming soon
               </Button>
             )}
-            {service === "special" && (
+            {active && (
               <CustomButton onClick={() => handleClick(service)} height="45px">
                 GET STARTED
               </CustomButton>

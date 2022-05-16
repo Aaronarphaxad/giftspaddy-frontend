@@ -10,7 +10,7 @@ const CategoryComponent = ({ url, gif, category }) => {
         onClick={() => navigate(`/category/${url}`)}
         className={styles.categoryContainer}
       >
-        {gif && <img src={gif} alt="gif" />}
+        {gif && <img className="lazyload" data-src={gif} alt="gif" />}
         <p>{category}</p>
       </div>
     </>

@@ -1,19 +1,9 @@
 import React, { Suspense } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-// import HomePage from "./Pages/Home/Home";
 import HomepageLayout from "./Layouts/HomepageLayout/HomepageLayout";
 import Loading from "./Components/Loading/Loading";
-// import About from "./Pages/About/About";
-// import Services from "./Pages/Services/Services";
-// import Categories from "./Pages/Categories/Categories";
-// import Login from "./Pages/Login/Login";
-// import Register from "./Pages/Register/Register";
-// import ServiceDetail from "./Pages/Services/ServiceDetails/ServiceDetail";
-// import CategoryType from "./Pages/Categories/CategoryType/CategoryType";
-// import ProductPage from "./Pages/ProductPage/ProductPage";
-// import CartPage from "./Pages/Cart/CartPage";
-
+// Lazy imports
 const Home = React.lazy(() => import("./Pages/Home/Home"));
 const About = React.lazy(() => import("./Pages/About/About"));
 const Services = React.lazy(() => import("./Pages/Services/Services"));
@@ -29,6 +19,7 @@ const CategoryType = React.lazy(() =>
 const ProductPage = React.lazy(() => import("./Pages/ProductPage/ProductPage"));
 const CartPage = React.lazy(() => import("./Pages/Cart/CartPage"));
 const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
+const SecretPaddy = React.lazy(() => import("./Pages/SecretPaddy/SecretPaddy"));
 
 function App() {
   return (
@@ -68,6 +59,11 @@ function App() {
           exact
           path="/dashboard"
           element={<HomepageLayout children={<Dashboard />} />}
+        />
+        <Route
+          exact
+          path="/secret-paddy"
+          element={<HomepageLayout children={<SecretPaddy />} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
