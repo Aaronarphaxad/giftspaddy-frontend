@@ -20,7 +20,7 @@ const TopSection = () => {
       <div className={styles.left}>
         <h1>Gifting is the New Normal </h1>
         <p>
-          Order gifts for your loved one, and get them shipped instantly with
+          Get the perfect gift for your favourite person, shipped instantly with
           love.
         </p>
         <div>

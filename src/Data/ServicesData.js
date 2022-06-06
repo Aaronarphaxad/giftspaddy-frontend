@@ -17,7 +17,34 @@ export const ServicesData = [
 
     title: "Secret Paddy",
     active: true,
-    text: "Secret Paddy is a unique service for those who do not want to reveal their identity to the recipient, but they want to make the recipient feel special and get them any gift they can think of. A secret Paddy has will have the option to reveal their identity to the recipient after the gift has been delivered or stay completely anonymous. We will not reveal the identity of any sender unless requested to. The recipient is also allowed to reject the gift if they are not comfortable with receiving gifts from strangers. So the receiver will be sent a link to accept an anonymous gift from a secret Paddy. If accepted we will proceed with the order.",
+    text: (
+      <div>
+        <p>
+          Secret Paddy is a unique service for those who do not want to reveal
+          their identity to the recipient, but they want to make the recipient
+          feel special and get them any gift they can think of.
+        </p>
+        <ul>
+          <li>
+            A secret Paddy has will have the option to reveal their identity to
+            the recipient after the gift has been delivered or stay completely
+            anonymous.
+          </li>
+          <li>
+            We will not reveal the identity of any sender unless requested to.
+          </li>
+          <li>
+            The recipient is also allowed to reject the gift if they are not
+            comfortable with receiving gifts from strangers.
+          </li>
+          <li>
+            The receiver will be sent a link to accept an anonymous gift from a
+            secret Paddy.
+          </li>
+          <li> If accepted we will proceed with the order.</li>
+        </ul>
+      </div>
+    ),
   },
   {
     id: 3,

@@ -66,24 +66,21 @@
 }
 
 .addCartBtn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
   border: none;
   outline: none;
-  background-color: #f8f8f8;
+  background-color: #fafafa;
+  color: #000;
   display: grid;
   place-items: center;
 }
 
-.addCartBtn:focus {
-  border: 1px solid #108296;
-  outline: 1px solid #108296;
-}
-
 .addCartBtn:hover {
   background-color: #058196;
-  color: white;
+  color: #fff;
 }
 
 .infoRight {

@@ -94,6 +94,11 @@ const MenuContent = ({ isOpen, handleClick }) => {
     setAnchorEl(null);
   };
 
+  const handleCloseAll = () => {
+    handleClose();
+    handleClick();
+  };
+
   return (
     <div style={{ width: isOpen ? "100%" : "0" }} className="menu-div">
       <div className="content">
@@ -197,6 +202,7 @@ const MenuContent = ({ isOpen, handleClick }) => {
                     <div
                       className="d-flex align-items-center mb-2"
                       style={{ cursor: "pointer" }}
+                      onClick={handleCloseAll}
                     >
                       <img
                         src={dashboard}
@@ -477,6 +483,7 @@ const NavBar = ({ navbar }) => {
                     <div
                       className="d-flex align-items-center mb-2"
                       style={{ cursor: "pointer" }}
+                      onClick={handleClose}
                     >
                       <img
                         src={dashboard}
