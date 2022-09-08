@@ -84,7 +84,7 @@ function NoMatch() {
     <div id="mainfof" className="text-center mt-5">
       <div className="fof">
         <h3>
-          Page not found for <code>{location.pathname}</code>
+          Page not found<code>{location.pathname}</code>
         </h3>
         <h4>
           Go back <Link to="/">Home</Link>
