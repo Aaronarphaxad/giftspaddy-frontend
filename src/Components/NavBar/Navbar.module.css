@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   z-index: 10;
-  box-shadow: rgba(158, 173, 187, 0.2) 0px 8px 24px;
+  /* box-shadow: rgba(158, 173, 187, 0.2) 0px 8px 24px; */
   background: transparent;
   padding: 1rem 2rem;
   display: flex;

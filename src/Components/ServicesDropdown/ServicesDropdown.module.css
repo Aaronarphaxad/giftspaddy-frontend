@@ -56,6 +56,17 @@
   cursor: pointer;
   width: 203px;
   padding: 0.6rem 1rem;
+  position: relative;
+}
+
+.soon {
+  position: absolute;
+  background-color: #058196;
+  color: #ffffff;
+  font-size: 8px;
+  border-radius: 20px;
+  padding: 0 0.5rem;
+  right: 2%;
 }
 
 .dropdownRow:hover {

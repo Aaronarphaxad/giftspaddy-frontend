@@ -16,12 +16,14 @@ import Popover from "@mui/material/Popover";
 import dashboard from "../../Assets/images/dashboard-5481.svg";
 import settings from "../../Assets/images/settings-5666.svg";
 import { useSelector } from "react-redux";
+import { useAuth } from "../../Contexts/Auth";
+import { supabase } from "../../superbaseClient";
 
 // Mobile Menu
-
 const MobileNavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const cartList = useSelector((state) => state.cart.cartList);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     document.getElementById("root").style.overflow = isOpen ? "hidden" : "auto";
@@ -82,7 +84,36 @@ const MobileNavBar = () => {
 
 const MenuContent = ({ isOpen, handleClick }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const { user, signOut } = useAuth();
+  const avatar_url = useRef(null);
+  const full_name = useRef(null);
+  const [fullName, setName] = useState(full_name.current);
+
+  const getProfile = async (id) => {
+    try {
+      const { data } = await supabase
+        .from("profiles")
+        .select("full_name, email, id")
+        .eq("id", id);
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.user_metadata?.full_name) {
+      avatar_url.current = user?.user_metadata?.avatar_url;
+      setName(user?.user_metadata?.full_name.split(" ")[0]);
+    } else {
+      getProfile(user?.id).then((data) =>
+        setName(data[0].full_name?.split(" ")[0])
+      );
+
+      avatar_url.current = "";
+    }
+  }, [user]);
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
@@ -92,6 +123,11 @@ const MenuContent = ({ isOpen, handleClick }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleCloseAll = () => {
+    handleClose();
+    handleClick();
   };
 
   return (
@@ -163,17 +199,17 @@ const MenuContent = ({ isOpen, handleClick }) => {
           </NavLink>
 
           <div style={{ opacity: isOpen ? "1" : "0" }}>
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <div className="d-flex align-items-center gap-2">
-                  <Avatar alt="Aaron" src="" />
+                  <Avatar alt={full_name.current} src={avatar_url.current} />
                   <div
                     className="d-flex align-items-center"
                     aria-describedby={id}
                     onClick={handleOpen}
                     style={{ cursor: "pointer" }}
                   >
-                    <span style={{ marginRight: "5px" }}>Aaron</span>
+                    <span style={{ marginRight: "5px" }}>Hi, {fullName}</span>
                     <img
                       src={
                         "https://res.cloudinary.com/gifts-paddy/image/upload/v1651773205/arrow-down_r7rmn9.svg"
@@ -197,6 +233,7 @@ const MenuContent = ({ isOpen, handleClick }) => {
                     <div
                       className="d-flex align-items-center mb-2"
                       style={{ cursor: "pointer" }}
+                      onClick={handleCloseAll}
                     >
                       <img
                         src={dashboard}
@@ -225,6 +262,7 @@ const MenuContent = ({ isOpen, handleClick }) => {
                         bgColor="#058196"
                         height="35px"
                         width="100%"
+                        onClick={signOut}
                       >
                         Log out
                       </CustomButton>
@@ -253,13 +291,43 @@ const MenuContent = ({ isOpen, handleClick }) => {
   );
 };
 
+// MAIN NAVBAR
 const NavBar = ({ navbar }) => {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const ref = useRef();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const cartList = useSelector((state) => state.cart.cartList);
+  const { user, signOut } = useAuth();
+  const avatar_url = useRef(null);
+  const full_name = useRef(null);
+  const [fullName, setName] = useState(full_name.current);
+
+  const getProfile = async (id) => {
+    try {
+      const { data } = await supabase
+        .from("profiles")
+        .select("full_name, email, id")
+        .eq("id", id);
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.user_metadata?.full_name) {
+      avatar_url.current = user?.user_metadata?.avatar_url;
+      setName(user?.user_metadata?.full_name.split(" ")[0]);
+    } else {
+      getProfile(user?.id).then((data) =>
+        setName(data[0].full_name?.split(" ")[0])
+      );
+
+      avatar_url.current = "";
+    }
+  }, [user]);
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -427,11 +495,14 @@ const NavBar = ({ navbar }) => {
           </div>
           {/* Login buttons */}
           <div className={styles.linksRight}>
-            {isLoggedIn ? (
+            {user ? (
               <div className="d-flex align-items-center gap-1">
                 <div className="d-flex align-items-center gap-2">
                   <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={cartList.length} color="primary">
+                    <StyledBadge
+                      badgeContent={cartList?.length}
+                      color="primary"
+                    >
                       <Link to="/cart">
                         <img
                           src={
@@ -444,7 +515,8 @@ const NavBar = ({ navbar }) => {
                       </Link>
                     </StyledBadge>
                   </IconButton>
-                  <Avatar alt="Aaron" src="" />
+
+                  <Avatar alt={full_name.current} src={avatar_url.current} />
                   <div
                     className="d-flex align-items-center"
                     aria-describedby={id}
@@ -452,7 +524,7 @@ const NavBar = ({ navbar }) => {
                     style={{ cursor: "pointer" }}
                   >
                     <span style={{ marginRight: "5px", fontSize: "1rem" }}>
-                      Aaron
+                      Hi, {fullName}
                     </span>
                     <img
                       src={
@@ -477,6 +549,7 @@ const NavBar = ({ navbar }) => {
                     <div
                       className="d-flex align-items-center mb-2"
                       style={{ cursor: "pointer" }}
+                      onClick={handleClose}
                     >
                       <img
                         src={dashboard}
@@ -505,7 +578,7 @@ const NavBar = ({ navbar }) => {
                         bgColor="#058196"
                         height="35px"
                         width="100%"
-                        onClick={() => setIsLoggedIn(false)}
+                        onClick={signOut}
                       >
                         Log out
                       </CustomButton>

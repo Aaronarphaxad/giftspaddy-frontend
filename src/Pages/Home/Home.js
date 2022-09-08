@@ -11,6 +11,8 @@ import SponsorSection from "../../Components/SponsorSection/SponsorSection";
 import { Link, useNavigate } from "react-router-dom";
 import handleDate from "../../Helpers/VerifyDate";
 import GuyOrder from "../../Assets/icons/Order";
+import { useEffect } from "react";
+import { updateProfile, useAuth } from "../../Contexts/Auth";
 
 // TOP SECTION
 const TopSection = () => {
@@ -20,7 +22,7 @@ const TopSection = () => {
       <div className={styles.left}>
         <h1>Gifting is the New Normal </h1>
         <p>
-          Order gifts for your loved one, and get them shipped instantly with
+          Get the perfect gift for your favourite person, shipped instantly with
           love.
         </p>
         <div>
@@ -148,6 +150,17 @@ const SecondSection = () => {
 };
 
 const HomePage = () => {
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user?.app_metadata?.providers[1] === "google") {
+      let name = user?.user_metadata?.full_name;
+      let avatar_url = user?.user_metadata?.avatar_url;
+      let email = user?.email;
+      updateProfile(user.id, name, email, avatar_url);
+    }
+  }, [user]);
+
   return (
     <div style={{ width: "100vw" }}>
       <TopSection />

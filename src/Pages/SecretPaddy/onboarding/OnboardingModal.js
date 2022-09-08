@@ -58,7 +58,7 @@ const OnboardingModal = ({ open, setOpen }) => {
                   </p>
                 </div>
                 <div>
-                  <img src={screen1} alt="img" width="100%" height="300px" />
+                  <img src={screen1} alt="img" width="80%" height="300px" />
                 </div>
                 <div className={styles.bottomNav}>
                   <div>1/3</div>
@@ -72,7 +72,7 @@ const OnboardingModal = ({ open, setOpen }) => {
             <Box TransitionComponent={Transition2}>
               <div className={styles.onBoardContent}>
                 <div>
-                  <img src={screen2} alt="img" width="100%" height="300px" />
+                  <img src={screen2} alt="img" width="80%" height="300px" />
                 </div>
                 <div className={styles.onBoardCol}>
                   <h3>Recipient accepts the anonymous gift</h3>
@@ -108,7 +108,7 @@ const OnboardingModal = ({ open, setOpen }) => {
                   </p>
                 </div>
                 <div>
-                  <img src={screen3} alt="img" width="80%" height="300px" />
+                  <img src={screen3} alt="img" width="70%" height="300px" />
                 </div>
                 <div className={styles.bottomNav}>
                   <div>3/3</div>
