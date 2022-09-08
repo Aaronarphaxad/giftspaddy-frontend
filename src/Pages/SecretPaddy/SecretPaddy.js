@@ -11,7 +11,9 @@ const SecretPaddy = () => {
     <div className={styles.secretContainer}>
       <OnboardingModal open={open} setOpen={setOpen} />
       <h2 className={styles.header}>Secret Paddy</h2>
-      <p className={styles.para}>Taking anonymous gifting to another level!</p>
+      <p className={styles.para}>
+        Please enter the details of your anonymous gift:
+      </p>
       <div className={styles.formContent}>
         <label for="name">Name</label>
         <input name="name" />

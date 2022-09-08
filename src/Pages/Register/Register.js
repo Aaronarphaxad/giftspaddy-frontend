@@ -3,14 +3,19 @@ import styles from "./Register.module.css";
 import CustomButton from "../../Components/Button/Button";
 import google from "../../Assets/images/google.png";
 import toast, { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthBar from "react-password-strength-bar";
+import { updateProfile, useAuth } from "../../Contexts/Auth";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  // Get signUp function from the auth context
+  const { signUp, signInGoogle } = useAuth();
 
   const notifyError = (e) =>
     toast.error(e, {
@@ -34,8 +39,9 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
     if (name === "" && email === "" && password === "") {
       notifyError("Please fill all fields");
@@ -43,17 +49,33 @@ const Register = () => {
 
     if (!name && email && password) {
       notifyError("Please enter name");
+      setLoading(false);
     }
     if (name && email && !password) {
       notifyError("Please enter password");
+      setLoading(false);
     }
     if (!email && password && name) {
       notifyError("Please enter email");
+      setLoading(false);
     }
     if (name && email && password) {
-      regex.test(email)
-        ? notifySuccess("Login Successful")
-        : notifyError("Please enter valid email");
+      if (regex.test(email)) {
+        // supabase
+        const { user, error } = await signUp({ name, email, password });
+        updateProfile(user.id, name, user.email);
+        if (error) {
+          notifyError(error);
+          setLoading(false);
+        } else {
+          setLoading(false);
+          notifySuccess("Check your email to confirm");
+          navigate("/");
+        }
+      } else {
+        notifyError("Invalid email");
+        setLoading(false);
+      }
     }
   };
 
@@ -79,6 +101,17 @@ const Register = () => {
             />
           </Link>
           <h1>Want to spread love? Sign up!</h1>
+          <div className={styles.googleContainer}>
+            <div onClick={signInGoogle} className={styles.googleDiv}>
+              <img src={google} alt="google" height="27px" />
+              Sign up with Google
+            </div>
+            <div className={styles.lineDiv}>
+              <hr className={styles.line} />
+              <span>or</span>
+              <hr className={styles.line} />
+            </div>
+          </div>
           <p>Name</p>
           <div className={styles.inputDivs}>
             <input
@@ -143,20 +176,12 @@ const Register = () => {
               width="100%"
               onClick={handleSubmit}
             >
-              <span className={styles.btnText}>Sign up</span>
+              <span className={styles.btnText}>
+                {loading ? "Sending..." : "Sign up"}
+              </span>
             </CustomButton>
           </div>
-          <div className={styles.googleContainer}>
-            <div className={styles.lineDiv}>
-              <hr className={styles.line} />
-              <span>or</span>
-              <hr className={styles.line} />
-            </div>
-            <div className={styles.googleDiv}>
-              <img src={google} alt="google" height="27px" />
-              Sign up with Google
-            </div>
-          </div>
+
           <div className={styles.createAccount}>
             Already have an account?{" "}
             <Link to="/login">
