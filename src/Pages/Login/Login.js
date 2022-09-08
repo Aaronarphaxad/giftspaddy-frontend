@@ -40,14 +40,18 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
-    if (email === "" && password === "") {
+    if (!email || !password) {
       notifyError("Please fill all fields");
+      setLoading(false);
+      return;
     }
-    if (email && !password) {
+    if (!password) {
       notifyError("Please enter password");
+      return;
     }
-    if (!email && password) {
+    if (!email) {
       notifyError("Please enter email");
+      return;
     }
     if (email && password) {
       if (regex.test(email)) {
@@ -147,6 +151,7 @@ const Login = () => {
             height="50px"
             width="100%"
             onClick={handleSubmit}
+            disabled={!email && !password}
           >
             <span className={styles.btnText}>
               {loading ? "Signing in..." : "Sign in"}
