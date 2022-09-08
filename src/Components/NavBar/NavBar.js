@@ -303,6 +303,7 @@ const NavBar = ({ navbar }) => {
   const full_name = useRef(null);
   const [fullName, setName] = useState(full_name.current);
 
+  // fetch profile Profile
   const getProfile = async (id) => {
     try {
       const { data } = await supabase
