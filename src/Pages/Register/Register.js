@@ -45,11 +45,19 @@ const Register = () => {
     let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
     if (name === "" && email === "" && password === "") {
       notifyError("Please fill all fields");
+      return;
+    }
+
+    if (!name || !email || !password) {
+      notifyError("Please fill all fields");
+      setLoading(false);
+      return;
     }
 
     if (!name && email && password) {
       notifyError("Please enter name");
       setLoading(false);
+      return;
     }
     if (name && email && !password) {
       notifyError("Please enter password");
@@ -175,6 +183,7 @@ const Register = () => {
               height="50px"
               width="100%"
               onClick={handleSubmit}
+              disabled={!email && !password && !name}
             >
               <span className={styles.btnText}>
                 {loading ? "Sending..." : "Sign up"}
