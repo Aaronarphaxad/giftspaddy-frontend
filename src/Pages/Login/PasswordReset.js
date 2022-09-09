@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import CustomButton from "../../Components/Button/Button";
 import { supabase } from "../../superbaseClient";
 // import { supabase } from "../utils/supabase";
 import styles from "./Login.module.css";
@@ -76,18 +77,27 @@ function PasswordReset() {
   };
 
   return (
-    <div className={styles.inputDivs}>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="password"
-          required
-          value={password}
-          placeholder="Please enter your new Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <Button type="submit">Submit</Button>
-      </form>
+    <div className="text-center p-5">
+      <div className={`w-100 ${styles.inputDivs}`}>
+        <form>
+          <input
+            type="password"
+            required
+            value={password}
+            placeholder="Please enter your new Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </form>
+        <CustomButton
+          bgColor="#058196"
+          height="40px"
+          width="150px"
+          onClick={(e) => handleSubmit(e)}
+          type="submit"
+        >
+          Submit
+        </CustomButton>
+      </div>
     </div>
   );
 }
