@@ -1,15 +1,28 @@
-import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../../Components/Button/Button";
 import { supabase } from "../../superbaseClient";
 // import { supabase } from "../utils/supabase";
 import styles from "./Login.module.css";
 
 function PasswordReset() {
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const [hash, setHash] = useState(null);
+  const navigate = useNavigate();
+
+  const notifyError = (e) =>
+    toast.error(e, {
+      position: "top-right",
+      duration: 3000,
+    });
+  const notifySuccess = (e) =>
+    toast.success(e, {
+      position: "top-right",
+      duration: 3000,
+    });
 
   useEffect(() => {
     setHash(window.location.hash);
@@ -18,14 +31,21 @@ function PasswordReset() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const notification = toast.loading("Changing Password");
-
+    if (password !== password2 || (!password && !password2)) {
+      if (!password && !password2) {
+        notifyError("Enter Password");
+      } else {
+        notifyError("Password mismatch");
+      }
+      setPassword("");
+      setPassword2("");
+      return;
+    }
     try {
       // if the user doesn't have accesstoken
       if (!hash) {
-        return toast.error("Sorry, Invalid token", {
-          id: notification,
-        });
+        notifyError("Sorry, Invalid token");
+        return;
       } else if (hash) {
         const hashArr = hash
           .substring(1)
@@ -47,9 +67,7 @@ function PasswordReset() {
           !accessToken ||
           typeof accessToken === "object"
         ) {
-          toast.error("Invalid access token or type", {
-            id: notification,
-          });
+          notifyError("Invalid access token or type");
           return;
         }
 
@@ -59,35 +77,39 @@ function PasswordReset() {
         });
 
         if (error) {
-          toast.error(error.message, {
-            id: notification,
-          });
+          notifyError(error.message);
         } else if (!error) {
-          toast.success("Password Changed", {
-            id: notification,
-          });
+          notifySuccess("Password Changed");
+          navigate("/login");
         }
       }
     } catch (error) {
       console.log(error);
-      toast.error("Sorry Error occured", {
-        id: notification,
-      });
+      notifyError("Sorry Error occured");
     }
   };
 
   return (
-    <div className="text-center p-5">
-      <div className={`w-100 ${styles.inputDivs}`}>
-        <form>
-          <input
-            type="password"
-            required
-            value={password}
-            placeholder="Please enter your new Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </form>
+    <div className="d-flex flex-column align-items-center text-center p-5">
+      <Toaster />
+      <h2>Reset Password</h2>
+      <div className={`w-50 mb-2 ${styles.inputDivs}`}>
+        <input
+          type="password"
+          value={password}
+          placeholder="New Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <div className={`w-50 mb-2 ${styles.inputDivs}`}>
+        <input
+          type="password"
+          value={password2}
+          placeholder="Confirm Password"
+          onChange={(e) => setPassword2(e.target.value)}
+        />
+      </div>
+      <div className="d-flex flex-start">
         <CustomButton
           bgColor="#058196"
           height="40px"
