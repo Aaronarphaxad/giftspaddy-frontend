@@ -10,6 +10,7 @@ const About = React.lazy(() => import("./Pages/About/About"));
 const Services = React.lazy(() => import("./Pages/Services/Services"));
 const Categories = React.lazy(() => import("./Pages/Categories/Categories"));
 const Login = React.lazy(() => import("./Pages/Login/Login"));
+const PasswordReset = React.lazy(() => import("./Pages/Login/PasswordReset"));
 const Register = React.lazy(() => import("./Pages/Register/Register"));
 const ServiceDetail = React.lazy(() =>
   import("./Pages/Services/ServiceDetails/ServiceDetail")
@@ -69,6 +70,7 @@ function App() {
           />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
