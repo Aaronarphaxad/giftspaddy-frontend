@@ -36,6 +36,7 @@ export function AuthProvider({ children }) {
         provider: "google",
       }),
     signOut: () => supabase.auth.signOut(),
+    resetPassword: (email) => supabase.auth.api.resetPasswordForEmail(email),
     user,
   };
 

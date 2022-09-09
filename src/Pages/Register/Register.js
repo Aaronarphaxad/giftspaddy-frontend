@@ -43,10 +43,6 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
-    if (name === "" && email === "" && password === "") {
-      notifyError("Please fill all fields");
-      return;
-    }
 
     if (!name || !email || !password) {
       notifyError("Please fill all fields");
@@ -76,8 +72,8 @@ const Register = () => {
           notifyError(error);
           setLoading(false);
         } else {
+          notifySuccess("Check your email to verify");
           setLoading(false);
-          notifySuccess("Check your email to confirm");
           navigate("/");
         }
       } else {
