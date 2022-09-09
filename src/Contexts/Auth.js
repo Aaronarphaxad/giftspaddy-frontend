@@ -36,7 +36,11 @@ export function AuthProvider({ children }) {
         provider: "google",
       }),
     signOut: () => supabase.auth.signOut(),
-    resetPassword: (email) => supabase.auth.api.resetPasswordForEmail(email),
+    resetPassword: (email) =>
+      supabase.auth.api.resetPasswordForEmail(email, {
+        redirectTo: "http://giftspaddy.com/password-reset", //// this will redirect to us at password-reset page,
+        //// you can also set your own page for it.
+      }),
     user,
   };
 
