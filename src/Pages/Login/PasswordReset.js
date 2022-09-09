@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { supabase } from "../utils/supabase";
+import { supabase } from "../../superbaseClient";
+// import { supabase } from "../utils/supabase";
 import styles from "./Login.module.css";
 
 function PasswordReset() {
