@@ -120,6 +120,9 @@ function PasswordReset() {
           Submit
         </CustomButton>
       </div>
+      <p onClick={() => navigate("/login")} className="pointer mt-3 font-bold">
+        Go back
+      </p>
     </div>
   );
 }
