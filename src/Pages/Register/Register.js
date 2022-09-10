@@ -71,6 +71,7 @@ const Register = () => {
         if (error) {
           notifyError(error);
           setLoading(false);
+          return;
         } else {
           notifySuccess("Check your email to verify");
           setLoading(false);
