@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { updateProfile, useAuth } from "../../Contexts/Auth";
+import ReactGA from "react-ga";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -76,6 +77,11 @@ const Register = () => {
           notifySuccess("Check your email to verify");
           setLoading(false);
           navigate("/");
+          // Record google analytics
+          ReactGA.event({
+            category: "User",
+            action: "Created an Account",
+          });
         }
       } else {
         notifyError("Invalid email");

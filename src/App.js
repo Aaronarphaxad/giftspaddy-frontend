@@ -4,6 +4,8 @@ import { Routes, Route, useLocation, Link } from "react-router-dom";
 import HomepageLayout from "./Layouts/HomepageLayout/HomepageLayout";
 import Loading from "./Components/Loading/Loading";
 import { AuthProvider } from "./Contexts/Auth";
+import ReactGA from "react-ga";
+import RouteChanger from "./Components/RouteChanger";
 // Lazy imports
 const Home = React.lazy(() => import("./Pages/Home/Home"));
 const About = React.lazy(() => import("./Pages/About/About"));
@@ -23,9 +25,13 @@ const CartPage = React.lazy(() => import("./Pages/Cart/CartPage"));
 const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
 const SecretPaddy = React.lazy(() => import("./Pages/SecretPaddy/SecretPaddy"));
 
+const TRACKING_ID = "UA-240772397-2"; // YOUR_OWN_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+
 function App() {
   return (
     <AuthProvider>
+      <RouteChanger />
       <Suspense fallback={<Loading type={"spinningBubbles"} />}>
         <Routes>
           <Route path="/" element={<HomepageLayout children={<Home />} />} />
