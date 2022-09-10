@@ -1,11 +1,10 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import "./App.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import HomepageLayout from "./Layouts/HomepageLayout/HomepageLayout";
 import Loading from "./Components/Loading/Loading";
 import { AuthProvider } from "./Contexts/Auth";
 import ReactGA from "react-ga";
-import RouteChanger from "./Components/RouteChanger";
 // Lazy imports
 const Home = React.lazy(() => import("./Pages/Home/Home"));
 const About = React.lazy(() => import("./Pages/About/About"));
@@ -29,9 +28,21 @@ const TRACKING_ID = "UA-240772397-2"; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 
 function App() {
+  let location = useLocation();
+  // Update google analytics
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") {
+      if (location.pathname.includes("/app")) {
+        ReactGA.set({ page: location.pathname }, ["appTracker"]); // Update the user's current page
+        ReactGA.pageview(location.pathname, ["appTracker"]); // Record a pageview for the given page
+      } else {
+        ReactGA.set({ page: location.pathname }, ["marketingTracker"]); // Update the user's current page
+        ReactGA.pageview(location.pathname, ["marketingTracker"]); // Record a pageview for the given page
+      }
+    }
+  }, [location]);
   return (
     <AuthProvider>
-      <RouteChanger />
       <Suspense fallback={<Loading type={"spinningBubbles"} />}>
         <Routes>
           <Route path="/" element={<HomepageLayout children={<Home />} />} />
